@@ -1,0 +1,14 @@
+{
+  "type": "mowlib:mobeffect_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 11163050,
+  "mobEffect": "tetra:unwavering",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tetra"
+    }
+  ]
+}

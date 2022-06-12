@@ -1,0 +1,15 @@
+{
+"parent": "effectscrolls:item/scroll/scroll_small",
+  "textures": {
+    "0": "effectscrolls:items/models/upgrades/pedestal_upgrade",
+    "1": "effectscrolls:items/scroll/ribbons",
+    "2": "effectscrolls:items/scroll/scroll_1",
+    "particle": "effectscrolls:items/models/upgrades/pedestal_upgrade"
+  },
+  "overrides": [
+    { "predicate": { "effectscrolls:scroll_mode": 0}, "model": "effectscrolls:item/scroll/scroll_small"},
+    { "predicate": { "effectscrolls:scroll_mode": 1}, "model": "effectscrolls:item/scroll/scroll_medium"},
+    { "predicate": { "effectscrolls:scroll_mode": 2}, "model": "effectscrolls:item/scroll/scroll_large"},
+    { "predicate": { "effectscrolls:scroll_mode": 3}, "model": "effectscrolls:item/scroll/scroll_xlarge"}
+  ]
+}

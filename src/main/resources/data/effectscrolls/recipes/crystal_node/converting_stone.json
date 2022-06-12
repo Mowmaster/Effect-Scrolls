@@ -1,0 +1,16 @@
+{
+  "type": "effectscrolls:crystalnode",
+  "input": {
+    "tag": "forge:stone"
+  },
+  "result": {
+    "item": "crystalblocks:block_crystal_stone"
+  },
+
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "crystalblocks"
+    }
+  ]
+}

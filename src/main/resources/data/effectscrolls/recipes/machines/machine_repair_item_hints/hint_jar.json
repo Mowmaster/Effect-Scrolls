@@ -1,0 +1,12 @@
+{
+  "type": "mowlib:machine_repair_item_hints",
+  "input": {
+    "item": "effectscrolls:block_dust_jar"
+  },
+  "result": {
+    "item": "effectscrolls:block_dust_jar"
+  },
+  "hintTitle": "effectscrolls.hint.title",
+  "hintDescription": "effectscrolls.hint.dustjar_desc",
+  "localized": true
+}

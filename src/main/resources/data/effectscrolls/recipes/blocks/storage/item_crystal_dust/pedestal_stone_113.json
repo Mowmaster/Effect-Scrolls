@@ -1,0 +1,25 @@
+{
+
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B"
+  ],
+  "key": {
+    "B": {
+      "item": "effectscrolls:item_crystal",
+      "type": "forge:nbt",
+      "nbt": {
+        "mowlib_color": 5592575
+      }
+    }
+  },
+  "result": {
+    "item": "effectscrolls:item_crystal_dust",
+    "type": "forge:nbt",
+    "nbt": {
+      "mowlib_color": 5592575
+    },
+    "count": 4
+  }
+
+}

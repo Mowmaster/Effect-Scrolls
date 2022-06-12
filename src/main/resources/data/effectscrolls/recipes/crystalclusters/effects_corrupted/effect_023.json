@@ -1,0 +1,14 @@
+{
+  "type": "mowlib:mobeffectcorrupted_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 43775,
+  "mobEffect": "naturesaura:breathless",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "naturesaura"
+    }
+  ]
+}

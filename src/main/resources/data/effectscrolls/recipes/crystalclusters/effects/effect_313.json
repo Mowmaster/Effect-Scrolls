@@ -1,0 +1,9 @@
+{
+  "type": "mowlib:mobeffect_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 16733695,
+  "mobEffect": "minecraft:instant_health",
+  "instaTickDuration": 1
+}

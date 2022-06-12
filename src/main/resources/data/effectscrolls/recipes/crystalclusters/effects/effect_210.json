@@ -1,0 +1,8 @@
+{
+  "type": "mowlib:mobeffect_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 11162880,
+  "mobEffect": ""
+}

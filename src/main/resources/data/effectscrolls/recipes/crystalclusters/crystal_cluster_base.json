@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "B",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone_slab"
+    },
+    "B": {
+      "item": "crystalblocks:block_crystal_stone_slab"
+    }
+  },
+  "result": {
+    "item": "effectscrolls:block_crystal_cluster"
+  },
+
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "crystalblocks"
+    }
+  ]
+
+}

@@ -1,0 +1,14 @@
+{
+  "type": "mowlib:mobeffect_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 16755370,
+  "mobEffect": "tetra:small_health",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tetra"
+    }
+  ]
+}

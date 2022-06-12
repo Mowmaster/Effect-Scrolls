@@ -1,0 +1,8 @@
+{
+"parent": "effectscrolls:item/filter_item",
+  "textures": {
+    "0": "effectscrolls:items/models/filters/filteritemdefault_xp",
+    "1": "effectscrolls:items/models/filters/filterrestricted",
+    "particle": "effectscrolls:items/models/filters/filteritemdefault_xp"
+  }
+}

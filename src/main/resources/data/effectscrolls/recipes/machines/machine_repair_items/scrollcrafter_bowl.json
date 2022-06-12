@@ -1,0 +1,10 @@
+{
+  "type": "mowlib:machine_repair_items",
+  "input": {
+    "item": "effectscrolls:block_crafter_scroll_t15"
+  },
+  "result": {
+    "item": "minecraft:bowl"
+  },
+  "tagname": ""
+}

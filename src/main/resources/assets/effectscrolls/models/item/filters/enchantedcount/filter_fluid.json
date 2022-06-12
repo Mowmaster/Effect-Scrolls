@@ -1,0 +1,8 @@
+{
+"parent": "effectscrolls:item/filter_enchantedcount",
+  "textures": {
+    "0": "effectscrolls:items/models/filters/filteritemdefault_fluid",
+    "1": "effectscrolls:items/models/filters/filterbase",
+    "particle": "effectscrolls:items/models/filters/filteritemdefault_fluid"
+  }
+}

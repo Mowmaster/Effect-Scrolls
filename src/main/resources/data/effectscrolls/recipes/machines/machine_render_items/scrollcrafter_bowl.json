@@ -1,0 +1,24 @@
+{
+  "type": "mowlib:machine_render_items",
+  "input": [
+    {
+      "item": "effectscrolls:block_crafter_scroll_t15"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "minecraft:flower_pot"
+  },
+  "transitionX": 0.21875,
+  "transitionY": 1.1875,
+  "transitionZ": 0.21875,
+  "scaleX": 0.5,
+  "scaleY": 0.5,
+  "scaleZ": 0.5,
+  "angle": 0.0,
+  "renderItem": true,
+  "renderAsBlock": true
+
+}

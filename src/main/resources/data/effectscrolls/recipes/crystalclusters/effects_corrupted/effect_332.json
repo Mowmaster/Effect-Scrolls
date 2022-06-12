@@ -1,0 +1,14 @@
+{
+  "type": "mowlib:mobeffectcorrupted_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 16777130,
+  "mobEffect": "immersiveengineering:flashed",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "immersiveengineering"
+    }
+  ]
+}

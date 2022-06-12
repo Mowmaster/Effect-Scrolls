@@ -1,0 +1,9 @@
+{
+  "type": "effectscrolls:crystalnode",
+  "input": {
+    "item": "minecraft:tinted_glass"
+  },
+  "result": {
+    "item": "effectscrolls:block_dust_jar"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "mowlib:workstationbase",
+  "input": {
+    "item": "minecraft:blaze_rod"
+  },
+  "result": {
+    "item": "effectscrolls:block_crafter_scroll_t15"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "effectscrolls:crystalnode",
+  "input": {
+    "item": "minecraft:crafting_table"
+  },
+  "result": {
+    "item": "effectscrolls:block_workstation_base"
+  }
+}

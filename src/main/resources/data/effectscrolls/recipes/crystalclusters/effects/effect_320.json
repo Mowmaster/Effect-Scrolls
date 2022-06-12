@@ -1,0 +1,8 @@
+{
+  "type": "mowlib:mobeffect_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 16755200,
+  "mobEffect": "minecraft:fire_resistance"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "effectscrolls:item/augment_pedestal_renderdiffuser",
+  "textures": {
+    "layer0": "effectscrolls:items/augments/augment_renderdiffuser_iu"
+  }
+}

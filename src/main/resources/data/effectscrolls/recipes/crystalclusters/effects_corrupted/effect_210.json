@@ -1,0 +1,15 @@
+{
+  "type": "mowlib:mobeffectcorrupted_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 11162880,
+  "mobEffect": "tetra:stun",
+  "instaTickDuration": 1,
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tetra"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "parent": "effectscrolls:block/jar/jar_empty",
+  "overrides": [
+    { "predicate": { "effectscrolls:jar_filled": 0}, "model": "effectscrolls:block/jar/jar_empty"},
+    { "predicate": { "effectscrolls:jar_filled": 1}, "model": "effectscrolls:block/jar/jar_notempty"},
+    { "predicate": { "effectscrolls:jar_filled": 2}, "model": "effectscrolls:block/jar/jar_10"},
+    { "predicate": { "effectscrolls:jar_filled": 3}, "model": "effectscrolls:block/jar/jar_20"},
+    { "predicate": { "effectscrolls:jar_filled": 4}, "model": "effectscrolls:block/jar/jar_30"},
+    { "predicate": { "effectscrolls:jar_filled": 5}, "model": "effectscrolls:block/jar/jar_40"},
+    { "predicate": { "effectscrolls:jar_filled": 6}, "model": "effectscrolls:block/jar/jar_50"},
+    { "predicate": { "effectscrolls:jar_filled": 7}, "model": "effectscrolls:block/jar/jar_60"},
+    { "predicate": { "effectscrolls:jar_filled": 8}, "model": "effectscrolls:block/jar/jar_70"},
+    { "predicate": { "effectscrolls:jar_filled": 9}, "model": "effectscrolls:block/jar/jar_80"},
+    { "predicate": { "effectscrolls:jar_filled": 10}, "model": "effectscrolls:block/jar/jar_90"},
+    { "predicate": { "effectscrolls:jar_filled": 11}, "model": "effectscrolls:block/jar/jar_full"}
+  ]
+}

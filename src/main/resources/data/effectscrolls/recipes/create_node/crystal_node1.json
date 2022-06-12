@@ -1,0 +1,17 @@
+{
+  "type": "mowlib:dualhandedcrafting",
+  "blockTarget": {
+    "item": "minecraft:budding_amethyst"
+  },
+  "mainhandTool": {
+    "tag": "forge:gems"
+  },
+  "consumeMainhandItem": true,
+  "offhandTool": {
+    "item": "mowlib:applicator"
+  },
+  "consumeOffhandItem": false,
+  "result": {
+    "item": "effectscrolls:block_inertnode"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "effectscrolls:block/block_crystal",
+  "textures": {
+    "1": "effectscrolls:blocks/block_crystal_smooth",
+    "particle": "effectscrolls:blocks/block_crystal_smooth"
+  }
+}

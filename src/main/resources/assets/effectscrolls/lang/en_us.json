@@ -1,0 +1,74 @@
+{
+  "itemGroup.tab_effectscrollstab": "Effect Scrolls",
+  "effectscrolls.error": "ERROR",
+  "effectscrolls.description_shift": "Press Shift for More Info",
+  "effectscrolls.description_alt": "Press Alt for More Info",
+
+
+  "effectscrolls.crystal_node.set_success": "Crystal Node Created!",
+  "effectscrolls.crystal_node.set_fail": "This Block Isnt Budding Amethyst...",
+
+  "effectscrolls.crystal_cluster.crystal_add": "Crystal Added, New Effect is: ",
+  "effectscrolls.crystal_cluster.base_changed": "Base Block Changed",
+  "effectscrolls.crystal_cluster.base_type": " - New Filter Type: ",
+  "effectscrolls.crystal_cluster.base_baby": "Baby ",
+  "effectscrolls.crystal_cluster.fuel_add": "Fuel Added",
+  "effectscrolls.crystal_cluster.modifier_add": "Modifier Added",
+  "effectscrolls.crystal_cluster.color_mix": "You do not understand how to mix colored crystals safely, yet.",
+
+  "effectscrolls.dust_in_jar": "Dust in Jar - ",
+  "effectscrolls.dustmagic_amount_post_removal": "Dust In Block: ",
+
+  "effectscrolls.hint.scroll_made": "A New Repair Order has been Created.",
+  "effectscrolls.hint.repair_made": "A Repair has been Made.",
+  "effectscrolls.hint.repair_finished": "A Workstation or Machine has been fully repaired.",
+  "effectscrolls.hint.found": "An Item In your Inventory can be used to repair the Machine",
+  "effectscrolls.hint.title": "Repair Item Needed:",
+  "effectscrolls.hint.dustjar_desc": "A way to store dust is needed to repair this workstation.",
+
+  "effectscrolls.effect_scroll.text": "Effect Scroll of ",
+  "effectscrolls.effect_scroll.use": "Right Click to Use on Self",
+  "effectscrolls.effect_scroll.use_on": "Crouch Right Click a Mob/Player to Apply it to them.",
+  "effectscrolls.effect_scroll.instant": "Instantenous: ",
+  "effectscrolls.effect_scroll.instant_time": " ticks",
+
+  "effectscrolls.scroll_crafter.not_enough_to_craft": "You lack an ingredient for crafting Scrolls",
+  "effectscrolls.scroll_crafter.not_enough_dust": "More dust is needed to craft that amount of Scrolls",
+
+  "item.effectscrolls.item_crystal": "Crystal",
+  "item.effectscrolls.item_crystal.description": "§5 Obtained from Breaking Clusters of Crystals in Geodes",
+  "item.effectscrolls.item_crystal_dust": "Crystal Dust",
+  "item.effectscrolls.item_crystal_dust.description": "§5 Obtained from Crafting Crystals into Dust.",
+  "item.effectscrolls.item_nodemaker": "Crystal Node Converter",
+  "item.effectscrolls.item_nodemaker.description": "§3 Right Click this on a Budding Amethyst Block",
+
+  "item.effectscrolls.scroll_t2_repair": "Repair Request Scroll",
+  "item.effectscrolls.scroll_t2_repair.description": "§3 Right Click on a Machine or Workstation that is 'smoking' to receive a new repair request. If it is enchanted, right clicking again will just get another repair request unless the first request hasn't been fulfilled.",
+  "item.effectscrolls.scroll_effect": "Effect Scroll",
+  "item.effectscrolls.scroll_effect.description": "Comes in many colors and sizes, §5 Right Clicking string on a Scroll Crafter Workstation that has effectscrolls, Paper, Gold Nuggets, and Optionally a Modifier item, will yield one of these. Different effectscrollss produce different effects, more effectscrolls means longer durations.",
+
+  "block.effectscrolls.block_inertnode": "Crystal Node",
+  "block.effectscrolls.block_inertnode.description": "§5 Over time: Generates Clusters Of Crystals, or Converts Stone into Colored Crystal Stone",
+  "block.effectscrolls.block_crystal": "Block of Crystal",
+  "block.effectscrolls.block_crystal.description": "§5 Storage Block for Crystals",
+  "block.effectscrolls.block_inertcluster_full": "Cluster of Crystals",
+  "block.effectscrolls.block_inertcluster_full.description": "§5 A Full Sized Cluster of Crystals",
+  "block.effectscrolls.block_inertcluster_large": "Cluster of Crystals",
+  "block.effectscrolls.block_inertcluster_large.description": "§5 A Large Cluster of Crystals",
+  "block.effectscrolls.block_inertcluster_medium": "Cluster of Crystals",
+  "block.effectscrolls.block_inertcluster_medium.description": "§5 A Medium Cluster of Crystals",
+  "block.effectscrolls.block_inertcluster_small": "Cluster of Crystals",
+  "block.effectscrolls.block_inertcluster_small.description": "§5 A Small Cluster of Crystals",
+
+  "block.effectscrolls.block_workstation_base": "WorkStation Base",
+  "block.effectscrolls.block_workstation_base.description": "§5 Crafted By Placing a Crafting Bench next to a Crystal Node, and waiting some time...",
+
+  "block.effectscrolls.block_crafter_scroll_t15": "Scroll Crafter Base",
+  "block.effectscrolls.block_crafter_scroll_t15.description": "§5 Right Click a Blaze Rod on a Work Station Base Block",
+
+  "block.effectscrolls.block_dust_jar": "Dust Jar",
+  "block.effectscrolls.block_dust_jar.description": "§5 Crafted By Placing Tinted Glass next to a Crystal Node, and waiting some time...",
+
+  "block.effectscrolls.block_crystal_cluster": "Crystal Cluster Base",
+  "block.effectscrolls.block_crystal_cluster.description": "§5 Made from SandWitching a Crystal Stone Slab between some Stone Slabs, this can hold crystals, and when fueled, give off effects, Any block can be used as its base, and Redstone can be applied to turn it off."
+}

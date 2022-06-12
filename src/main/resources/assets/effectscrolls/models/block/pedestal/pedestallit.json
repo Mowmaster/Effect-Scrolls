@@ -1,0 +1,9 @@
+{
+  "parent": "effectscrolls:block/pedestal/base_pedestal_models/pedestal_blocklit",
+  "textures": {
+    "filter": "effectscrolls:blocks/block_crystal_stone",
+    "glow":"effectscrolls:blocks/pedestal/ancientglowstone",
+    "type": "effectscrolls:blocks/block_crystal_stone",
+    "typepart":"effectscrolls:blocks/block_crystal_stone"
+  }
+}

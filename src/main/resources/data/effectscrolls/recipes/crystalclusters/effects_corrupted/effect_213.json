@@ -1,0 +1,14 @@
+{
+  "type": "mowlib:mobeffectcorrupted_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 11163135,
+  "mobEffect": "tetra:pried",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tetra"
+    }
+  ]
+}

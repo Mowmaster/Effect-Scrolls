@@ -1,0 +1,9 @@
+{
+  "type": "mowlib:mobeffect_color",
+  "input": {
+    "item": "effectscrolls:item_crystal"
+  },
+  "color": 16776960,
+  "mobEffect": "minecraft:saturation",
+  "instaTickDuration": 1
+}

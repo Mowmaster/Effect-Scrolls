@@ -1,0 +1,11 @@
+{
+  "variants":
+  {
+    "facing=down": { "model": "effectscrolls:block/block_crystal_cluster","x": 180 },
+    "facing=east": { "model": "effectscrolls:block/block_crystal_cluster","x": 90, "y": 90 },
+    "facing=north": { "model": "effectscrolls:block/block_crystal_cluster","x": 90 },
+    "facing=south": { "model": "effectscrolls:block/block_crystal_cluster","x": 90, "y": 180 },
+    "facing=up": { "model": "effectscrolls:block/block_crystal_cluster","x": 0 },
+    "facing=west": { "model": "effectscrolls:block/block_crystal_cluster","x": 90, "y": 270 }
+  }
+}

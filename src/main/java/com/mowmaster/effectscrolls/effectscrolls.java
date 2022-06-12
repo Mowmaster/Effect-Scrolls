@@ -1,12 +1,22 @@
 package com.mowmaster.effectscrolls;
 
 import com.mojang.logging.LogUtils;
+import com.mowmaster.effectscrolls.EffectScrollConfig.EffectScrollsConfig;
+import com.mowmaster.effectscrolls.Registry.*;
+import com.mowmaster.mowlib.Networking.MowLibPacketHandler;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -16,17 +26,20 @@ import org.slf4j.Logger;
 
 import java.util.stream.Collectors;
 
+import static com.mowmaster.effectscrolls.EffectScrollsUtils.References.MODNAME;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("effectscrolls")
 public class effectscrolls
 {
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public effectscrolls()
     {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
         // Register the enqueueIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
@@ -34,6 +47,20 @@ public class effectscrolls
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(new EffectScrollsClientRegistry()));
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, EffectScrollsConfig.commonSpec);
+
+        eventBus.register(EffectScrollsConfig.class);
+
+        DeferredRegisterItems.ITEMS.register(eventBus);
+        DeferredRegisterBlocks.BLOCKS.register(eventBus);
+        DeferredRegisterTileBlocks.BLOCKS.register(eventBus);
+        DeferredBlockEntityTypes.BLOCK_ENTITIES.register(eventBus);
+        DeferredRecipeSerializers.SERIALIZERS.register(eventBus);
+
+        //MinecraftForge.EVENT_BUS.register(new DustGeneration());
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -41,6 +68,12 @@ public class effectscrolls
         /*// some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());*/
+    }
+
+    private void setupClient(final FMLClientSetupEvent event)
+    {
+        LOGGER.info("Initialize "+MODNAME+" Block Entity Renders");
+        EffectScrollsClientRegistry.registerBlockEntityRenderers();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

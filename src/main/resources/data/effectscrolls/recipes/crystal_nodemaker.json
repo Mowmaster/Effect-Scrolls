@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:gems"
+    },
+    {
+      "tag": "forge:gems"
+    },
+    {
+      "tag": "forge:gems"
+    },
+    {
+      "tag": "forge:gems"
+    },
+    {
+      "tag": "forge:gems"
+    },
+    {
+      "tag": "forge:gems"
+    },
+    {
+      "tag": "forge:gems"
+    },
+    {
+      "tag": "forge:gems"
+    },
+    {
+      "item": "mowlib:applicator"
+    }
+  ],
+  "result": {
+    "item": "effectscrolls:item_nodemaker",
+    "count": 8
+  }
+}
