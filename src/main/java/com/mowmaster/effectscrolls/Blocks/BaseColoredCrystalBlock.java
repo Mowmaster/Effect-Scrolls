@@ -5,6 +5,7 @@ import com.mowmaster.mowlib.Blocks.BaseBlocks.BaseColoredBlock;
 import com.mowmaster.mowlib.Items.ColorApplicator;
 import com.mowmaster.mowlib.MowLibUtils.ColorReference;
 import net.minecraft.core.BlockPos;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -17,6 +18,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.CryingObsidianBlock;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
@@ -29,6 +32,12 @@ public class BaseColoredCrystalBlock extends BaseColoredBlock
     {
         super(p_152915_);
         this.registerDefaultState(ColorReference.addColorToBlockState(this.defaultBlockState(),ColorReference.DEFAULTCOLOR));
+    }
+
+    //This only exists because i cant figure out how Mining Gadgets breaks blocks (currently my blocks dont drop when mined with their mod...)
+    @Override
+    public float defaultDestroyTime() {
+        return -0.01F;
     }
 
     @Override

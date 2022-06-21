@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "effectscrolls:block_crafter_scroll_t15",
+    "effectscrolls:block_workstation_base",
+    "effectscrolls:block_dust_jar",
+    "effectscrolls:block_crystal_cluster"
+  ]
+}

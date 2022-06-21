@@ -87,6 +87,8 @@ public class EffectScrollsClientRegistry
         }, DeferredRegisterTileBlocks.BLOCK_DUST_JAR.get());
         event.getItemColors().register((stack, color) ->
         {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterTileBlocks.BLOCK_CRAFTER_SCROLL_T15.get());
+        event.getItemColors().register((stack, color) ->
+        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.BASE_WORKSTATION_BLOCK.get());
 
     }
 

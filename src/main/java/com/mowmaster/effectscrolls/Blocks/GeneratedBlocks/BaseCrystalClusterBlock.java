@@ -1,6 +1,7 @@
 package com.mowmaster.effectscrolls.Blocks.GeneratedBlocks;
 
 import com.mowmaster.effectscrolls.Blocks.BaseColoredCrystalBlock;
+import com.mowmaster.effectscrolls.EffectScrollConfig.EffectScrollsConfig;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterBlocks;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterItems;
 import com.mowmaster.mowlib.MowLibUtils.ColorReference;
@@ -49,6 +50,10 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
     protected final VoxelShape westAabb;
     protected final VoxelShape upAabb;
     protected final VoxelShape downAabb;
+
+    //BlockLoot
+    //createShulkerBoxDrop -->CopyNbtFunction
+    //OOOR just copy how the hardcoded shulker box class does it :P
 
     public BaseCrystalClusterBlock(int p_152015_, int p_152016_, BlockBehaviour.Properties p_152726_) {
 
@@ -100,13 +105,14 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
     public BlockState getStateForPlacement(BlockPlaceContext p_152019_) {
         LevelAccessor levelaccessor = p_152019_.getLevel();
         BlockPos blockpos = p_152019_.getClickedPos();
+        Direction direction = p_152019_.getClickedFace();
         BlockState blockstate = p_152019_.getLevel().getBlockState(p_152019_.getClickedPos());
-        if (blockstate.is(this))
-        {
-            int getColor = ColorReference.getColorFromStateInt(blockstate);
-            return ColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER)).setValue(FACING, p_152019_.getClickedFace());
-        }
-        else return super.getStateForPlacement(p_152019_);
+        int getColor = ColorReference.getColorFromStateInt(blockstate);
+        return blockstate.is(this) && blockstate.getValue(FACING) == direction
+                ?
+                ColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(FACING, direction.getOpposite()).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER))
+                :
+                ColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(FACING, direction).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER));
     }
 
     public BlockState rotate(BlockState p_152033_, Rotation p_152034_) {
@@ -148,11 +154,16 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
     }
 
     public void entityInside(BlockState p_57270_, Level p_57271_, BlockPos p_57272_, Entity p_57273_) {
-        boolean isCreative = false;
-        if (p_57273_ instanceof LivingEntity) {
-            if(p_57273_ instanceof ServerPlayer)isCreative = ((ServerPlayer) p_57273_).isCreative();
+        if(EffectScrollsConfig.COMMON.funHaters.get())return;
 
-            if(!isCreative)
+        if (p_57273_ instanceof LivingEntity) {
+            boolean isCreative = false;
+            if(p_57273_ instanceof ServerPlayer)isCreative = ((ServerPlayer) p_57273_).isCreative();
+            if(isCreative)return;
+            Direction getFacing = (p_57270_.hasProperty(FACING))?(p_57270_.getValue(FACING)):(null);
+            BlockState blockBelow = (getFacing != null)?(p_57271_.getBlockState(p_57272_.offset(getFacing.getOpposite().getNormal()))):(DeferredRegisterBlocks.CRYSTAL_NODE.get().defaultBlockState());
+
+            if(blockBelow.getBlock() instanceof BaseCrystalNodeBlock)
             {
                 p_57273_.makeStuckInBlock(p_57270_, new Vec3((double)0.8F, 0.75D, (double)0.8F));
                 if (!p_57271_.isClientSide && (p_57273_.xOld != p_57273_.getX() || p_57273_.zOld != p_57273_.getZ())) {
@@ -171,13 +182,65 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
                     }
                 }
             }
-
         }
+    }
+
+    @Override
+    public void onRemove(BlockState p_60515_, Level p_60516_, BlockPos p_60517_, BlockState p_60518_, boolean p_60519_) {
+        //&& !(p_60518_.getBlock() instanceof BaseCrystalClusterBlock)
+        if(!p_60516_.isClientSide() && p_60519_)
+        {
+            Random rand = new Random();
+            if (p_60515_.getBlock() instanceof BaseCrystalClusterBlock) {
+                ItemStack itemstack = new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get());
+                if(p_60515_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get()))itemstack.setCount(rand.nextInt(0, 1));
+                if(p_60515_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get()))itemstack.setCount(rand.nextInt(0, 2));
+                if(p_60515_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
+                if(p_60515_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
+
+                int getColor = ColorReference.getColorFromStateInt(p_60515_);
+                ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                ItemEntity itementity = new ItemEntity(p_60516_, (double)p_60517_.getX() + 0.5D, (double)p_60517_.getY() + 0.5D, (double)p_60517_.getZ() + 0.5D, newStack);
+                itementity.setDefaultPickUpDelay();
+                p_60516_.addFreshEntity(itementity);
+            }
+        }
+        super.onRemove(p_60515_, p_60516_, p_60517_, p_60518_, p_60519_);
+    }
+
+
+    @Override
+    public boolean canDropFromExplosion(BlockState state, BlockGetter level, BlockPos pos, Explosion explosion) {
+        return true;
+    }
+
+    @Override
+    public void onBlockExploded(BlockState state, Level level, BlockPos pos, Explosion explosion) {
+        if(!level.isClientSide())
+        {
+            Random rand = new Random();
+            if (state.getBlock() instanceof BaseCrystalClusterBlock) {
+                ItemStack itemstack = new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get());
+                if(state.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get()))itemstack.setCount(rand.nextInt(0, 1));
+                if(state.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get()))itemstack.setCount(rand.nextInt(0, 2));
+                if(state.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
+                if(state.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
+
+                int getColor = ColorReference.getColorFromStateInt(state);
+                ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                ItemEntity itementity = new ItemEntity(level, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, newStack);
+                itementity.setDefaultPickUpDelay();
+                level.setBlock(pos,Blocks.AIR.defaultBlockState(),3);
+                level.addFreshEntity(itementity);
+            }
+        }
+        //super.onBlockExploded(state, level, pos, explosion);
     }
 
     @Override
     public void playerWillDestroy(Level p_56212_, BlockPos p_56213_, BlockState p_56214_, Player p_56215_) {
 
+        //if(p_56215_ == null)return;
         if(!p_56212_.isClientSide())
         {
             Random rand = new Random();

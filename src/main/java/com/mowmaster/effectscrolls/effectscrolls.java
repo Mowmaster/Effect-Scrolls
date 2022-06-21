@@ -49,8 +49,8 @@ public class effectscrolls
         MinecraftForge.EVENT_BUS.register(this);
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(new EffectScrollsClientRegistry()));
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, EffectScrollsConfig.commonSpec);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(new EffectScrollsClientRegistry()));
 
         eventBus.register(EffectScrollsConfig.class);
 
@@ -59,6 +59,7 @@ public class effectscrolls
         DeferredRegisterTileBlocks.BLOCKS.register(eventBus);
         DeferredBlockEntityTypes.BLOCK_ENTITIES.register(eventBus);
         DeferredRecipeSerializers.SERIALIZERS.register(eventBus);
+
 
         //MinecraftForge.EVENT_BUS.register(new DustGeneration());
     }

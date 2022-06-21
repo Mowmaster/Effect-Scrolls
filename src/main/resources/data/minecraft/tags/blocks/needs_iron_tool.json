@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "effectscrolls:block_inertcluster_full",
+    "effectscrolls:block_inertcluster_large",
+    "effectscrolls:block_inertcluster_medium",
+    "effectscrolls:block_inertcluster_small",
+    "effectscrolls:block_crystal",
+    "effectscrolls:block_crystal_compact",
+    "effectscrolls:block_inertcluster_full"
+  ]
+}

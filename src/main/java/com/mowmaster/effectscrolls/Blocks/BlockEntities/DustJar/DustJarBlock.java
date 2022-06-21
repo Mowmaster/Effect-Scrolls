@@ -9,6 +9,7 @@ import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
 import com.mowmaster.mowlib.Items.ColorApplicator;
 import com.mowmaster.mowlib.MowLibUtils.ColorReference;
 import com.mowmaster.mowlib.MowLibUtils.MessageUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibReferences;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -185,14 +186,13 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
     public void attack(BlockState p_60499_, Level p_60500_, BlockPos p_60501_, Player p_60502_) {
         if(!p_60500_.isClientSide())
         {
-            BlockEntity blockEntity = p_60500_.getBlockEntity(p_60501_);
-            if(blockEntity instanceof DustJarBlockEntity jar)
+            if(p_60500_.getBlockEntity(p_60501_) instanceof DustJarBlockEntity jar)
             {
                 ItemStack itemInHand = p_60502_.getMainHandItem();
                 ItemStack itemInOffHand = p_60502_.getOffhandItem();
                 ItemStack itemInMainHand = p_60502_.getMainHandItem();
 
-                if(jar.hasDust() && itemInOffHand.getItem() instanceof DustJarBlockItem && !(itemInMainHand.getItem() instanceof DustJarBlockItem))
+                /*if(jar.hasDust() && itemInOffHand.getItem() instanceof DustJarBlockItem && !(itemInMainHand.getItem() instanceof DustJarBlockItem))
                 {
                     DustMagic getJarMagic = DustMagic.getDustMagicInItemStack(itemInOffHand);
                     int capacity = (itemInOffHand.hasTag())?((itemInOffHand.getTag().contains(MODID + "_dustCapacity"))?(itemInOffHand.getTag().getInt(MODID + "_dustCapacity")):(1000)):(1000);
@@ -221,7 +221,37 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                         }
                     }
                 }
-                else if(jar.hasDust() && itemInMainHand.getItem() instanceof DustJarBlockItem && !(itemInOffHand.getItem() instanceof DustJarBlockItem))
+                else */
+                if(jar.hasDust() && itemInMainHand.getItem() instanceof DustJarBlockItem && !(itemInOffHand.getItem() instanceof DustJarBlockItem))
+                {
+                    DustMagic getJarMagic = DustMagic.getDustMagicInItemStack(itemInMainHand);
+                    int capacity = (itemInMainHand.hasTag())?((itemInMainHand.getTag().contains(MODID + "_dustCapacity"))?(itemInMainHand.getTag().getInt(MODID + "_dustCapacity")):(1000)):(1000);
+                    int spaceInJar = capacity - getJarMagic.getDustAmount();
+                    if(getJarMagic.isDustEqualOrEmpty(jar.getStoredDust()))
+                    {
+
+                        if(jar.removeDust(spaceInJar, IDustHandler.DustAction.SIMULATE).getDustAmount()>0)
+                        {
+                            if(p_60502_.isCrouching())
+                            {
+                                DustMagic crafterRemoval = jar.removeDust(10, IDustHandler.DustAction.EXECUTE);
+                                if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
+                                else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
+                                DustMagic.setDustMagicInStack(itemInMainHand,getJarMagic);
+                                MessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
+                            }
+                            else
+                            {
+                                DustMagic crafterRemoval = jar.removeDust(1, IDustHandler.DustAction.EXECUTE);
+                                if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
+                                else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
+                                DustMagic.setDustMagicInStack(itemInMainHand,getJarMagic);
+                                MessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
+                            }
+                        }
+                    }
+                }
+                /*else if(jar.hasDust() && itemInMainHand.getItem() instanceof DustJarBlockItem && !(itemInOffHand.getItem() instanceof DustJarBlockItem))
                 {
                     DustMagic getJarMagic = DustMagic.getDustMagicInItemStack(itemInOffHand);
                     int capacity = (itemInOffHand.hasTag())?((itemInOffHand.getTag().contains(MODID + "_dustCapacity"))?(itemInOffHand.getTag().getInt(MODID + "_dustCapacity")):(1000)):(1000);
@@ -249,7 +279,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                             }
                         }
                     }
-                }
+                }*/
             }
         }
 
@@ -354,13 +384,10 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                 }
                 else if(itemInMainHand.isEmpty())
                 {
-                    if(p_60506_.isCrouching())
+                    if(jar.hasDust())
                     {
-                        if(jar.hasDust())
-                        {
-                            DustMagic magic = jar.getStoredDust();
-                            MessageUtils.messagePlayerChatWithAppend(MODID, p_60506_,ChatFormatting.WHITE,MODID + ".dust_in_jar", Arrays.asList(ColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
-                        }
+                        DustMagic magic = jar.getStoredDust();
+                        MessageUtils.messagePopupWithAppend(MODID, p_60506_,ChatFormatting.WHITE,MODID + ".dust_in_jar", Arrays.asList(MowLibReferences.MODID + "." +ColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
                     }
                 }
             }

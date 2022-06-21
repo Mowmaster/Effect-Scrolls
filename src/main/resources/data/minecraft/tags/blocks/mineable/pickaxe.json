@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "effectscrolls:block_crystal_cluster",
+    "effectscrolls:block_dust_jar",
+    "effectscrolls:block_crafter_scroll_t15",
+    "effectscrolls:block_workstation_base",
+    "effectscrolls:block_inertcluster_full",
+    "effectscrolls:block_inertcluster_large",
+    "effectscrolls:block_inertcluster_medium",
+    "effectscrolls:block_inertcluster_small",
+    "effectscrolls:block_crystal",
+    "effectscrolls:block_crystal_compact"
+  ]
+}

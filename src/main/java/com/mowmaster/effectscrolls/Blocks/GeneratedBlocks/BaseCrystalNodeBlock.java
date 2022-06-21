@@ -18,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -32,8 +31,6 @@ import static com.mowmaster.mowlib.MowLibUtils.MowLibReferences.MODID;
 
 public class BaseCrystalNodeBlock extends BaseColoredCrystalBlock
 {
-
-    public static final int GROWTH_CHANCE = EffectScrollsConfig.COMMON.nodeGrowthChance.get();
     private static final Direction[] DIRECTIONS = Direction.values();
 
     public BaseCrystalNodeBlock(BlockBehaviour.Properties p_152726_) {
@@ -57,7 +54,7 @@ public class BaseCrystalNodeBlock extends BaseColoredCrystalBlock
     }
 
     public void randomTick(BlockState p_222954_, ServerLevel p_222955_, BlockPos p_222956_, RandomSource p_222957_) {
-        if (p_222957_.nextInt(GROWTH_CHANCE) == 0) {
+        if (p_222957_.nextInt(EffectScrollsConfig.COMMON.nodeGrowthChance.get()) == 0) {
             Direction direction = DIRECTIONS[p_222957_.nextInt(DIRECTIONS.length)];
             BlockState blockstateOrigin = p_222955_.getBlockState(p_222956_);
             BlockPos blockpos = p_222956_.relative(direction);

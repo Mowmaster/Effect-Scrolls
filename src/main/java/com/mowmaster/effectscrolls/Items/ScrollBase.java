@@ -241,8 +241,8 @@ public class ScrollBase extends EffectItemBase
             TooltipUtils.addTooltipMessageWithStyle(p_41423_,getEffect.getEffect().getDisplayName().getString() + " " + TooltipUtils.getEnchantRomanNumeral(getEffect.getAmplifier()) + " - " + time,format);
         }
 
-        List<String> listy = Arrays.asList(References.MODID + ".effect_scroll.use", References.MODID + ".effect_scroll.use_on");
+        List<String> listy = Arrays.asList("effectscrolls" + ".effect_scroll.use", "effectscrolls" + ".effect_scroll.use_on");
         List<ChatFormatting> chatty = Arrays.asList(ChatFormatting.GOLD,ChatFormatting.GREEN);
-        TooltipUtils.addTooltipShiftMessageMultiWithStyle(References.MODID, p_41423_,listy,chatty);
+        TooltipUtils.addTooltipShiftMessageMultiWithStyle("effectscrolls", p_41423_,listy,chatty);
     }
 }

@@ -1,10 +1,23 @@
 package com.mowmaster.effectscrolls.Blocks.BlockEntities.DustJar;
 
 
+import com.mowmaster.effectscrolls.EffectScrollsUtils.References;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Items.BaseDustStorageBlockItem;
+import com.mowmaster.mowlib.MowLibUtils.ColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MessageUtils;
+import com.mowmaster.mowlib.MowLibUtils.TooltipUtils;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static com.mowmaster.mowlib.MowLibUtils.MowLibReferences.MODID;
 
@@ -53,5 +66,20 @@ public class DustJarBlockItem extends BaseDustStorageBlockItem {
         return getJarMagic.getDustColor();
     }
 
+    @Override
+    public void appendHoverText(ItemStack p_40572_, @Nullable Level p_40573_, List<Component> p_40574_, TooltipFlag p_40575_) {
+        super.appendHoverText(p_40572_, p_40573_, p_40574_, p_40575_);
 
+        DustMagic magic = DustMagic.getDustMagicInItemStack(p_40572_);
+        if(magic.getDustColor() != -1)
+        {
+            MutableComponent base = Component.translatable(References.MODID + ".dust_in_jar");
+            MutableComponent base2 = Component.translatable(References.MODID + "." + ColorReference.getColorName(magic.getDustColor()));
+            base.append(base2);
+            base.append(": ");
+            base.append(""+magic.getDustAmount()+"");
+            base.withStyle(ChatFormatting.WHITE);
+            p_40574_.add(base);
+        }
+    }
 }

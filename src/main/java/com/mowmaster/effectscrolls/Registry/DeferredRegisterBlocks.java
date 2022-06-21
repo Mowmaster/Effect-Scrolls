@@ -5,6 +5,7 @@ import com.mowmaster.effectscrolls.Blocks.BaseColoredCrystalBlock;
 import com.mowmaster.effectscrolls.Blocks.GeneratedBlocks.BaseCrystalClusterBlock;
 import com.mowmaster.effectscrolls.Blocks.GeneratedBlocks.BaseCrystalNodeBlock;
 import com.mowmaster.mowlib.Blocks.BaseBlocks.BaseWorkStationBlock;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -32,16 +33,16 @@ public class DeferredRegisterBlocks
     //public static final RegistryObject<FeatureDecorator<NoneDecoratorConfiguration>> RNG_DECORATOR = DECORATORS.register("rng_initializer", GeodeDecorator::new);
 
     public static final RegistryObject<Block> CRYSTAL_NODE = registerBlock("block_inertnode",
-            () -> new BaseCrystalNodeBlock(BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().strength(2.0F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 10; })));
+            () -> new BaseCrystalNodeBlock(BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().strength(50.0F, 1200.0F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 10; })));
 
     public static final RegistryObject<Block> CRYSTAL_CLUSTER_FULL = registerBlock("block_inertcluster_full",
             () -> new BaseCrystalClusterBlock(7, 3, BlockBehaviour.Properties.of(Material.AMETHYST).strength(1.0F).sound(SoundType.AMETHYST_CLUSTER).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 10; })));
     public static final RegistryObject<Block> CRYSTAL_CLUSTER_LARGE = registerBlock("block_inertcluster_large",
-            () -> new BaseCrystalClusterBlock(5, 3, BlockBehaviour.Properties.of(Material.AMETHYST).strength(0.75F).sound(SoundType.LARGE_AMETHYST_BUD).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 5; })));
+            () -> new BaseCrystalClusterBlock(5, 3, BlockBehaviour.Properties.of(Material.AMETHYST).strength(0.75F).sound(SoundType.LARGE_AMETHYST_BUD).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 7; })));
     public static final RegistryObject<Block> CRYSTAL_CLUSTER_MEDIUM = registerBlock("block_inertcluster_medium",
-            () -> new BaseCrystalClusterBlock(4, 3, BlockBehaviour.Properties.of(Material.AMETHYST).strength(0.5F).sound(SoundType.MEDIUM_AMETHYST_BUD).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 3; })));
+            () -> new BaseCrystalClusterBlock(4, 3, BlockBehaviour.Properties.of(Material.AMETHYST).strength(0.5F).sound(SoundType.MEDIUM_AMETHYST_BUD).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 5; })));
     public static final RegistryObject<Block> CRYSTAL_CLUSTER_SMALL = registerBlock("block_inertcluster_small",
-            () -> new BaseCrystalClusterBlock(3, 4, BlockBehaviour.Properties.of(Material.AMETHYST).strength(0.25F).sound(SoundType.SMALL_AMETHYST_BUD).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 1; })));
+            () -> new BaseCrystalClusterBlock(3, 4, BlockBehaviour.Properties.of(Material.AMETHYST).strength(0.25F).sound(SoundType.SMALL_AMETHYST_BUD).requiresCorrectToolForDrops().lightLevel((p_152629_) -> { return 2; })));
 
     public static final RegistryObject<Block> CRYSTAL_BLOCK = registerBlock("block_crystal",
             () -> new BaseColoredCrystalBlock(BlockBehaviour.Properties.of(Material.AMETHYST).strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).lightLevel((p_152629_) -> { return 10; })));
