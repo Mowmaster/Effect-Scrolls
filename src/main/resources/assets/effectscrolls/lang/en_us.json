@@ -16,7 +16,7 @@
   "effectscrolls.crystal_cluster.modifier_add": "Modifier Added",
   "effectscrolls.crystal_cluster.color_mix": "You do not understand how to mix colored crystals safely, yet.",
 
-  "effectscrolls.dust_in_jar": "Dust in Jar - ",
+  "mowlib.dust_in_jar": "Dust in Jar - ",
   "effectscrolls.dustmagic_amount_post_removal": "Dust In Block: ",
 
   "effectscrolls.hint.scroll_made": "A New Repair Order has been Created.",

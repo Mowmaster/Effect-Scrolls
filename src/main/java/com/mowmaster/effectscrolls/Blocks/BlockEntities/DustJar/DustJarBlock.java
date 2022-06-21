@@ -292,10 +292,8 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
         if(!p_60504_.isClientSide())
         {
             BlockEntity blockEntity = p_60504_.getBlockEntity(p_60505_);
-            if(blockEntity instanceof DustJarBlockEntity)
+            if(blockEntity instanceof DustJarBlockEntity jar)
             {
-                DustJarBlockEntity jar = ((DustJarBlockEntity)blockEntity);
-
                 ItemStack itemInHand = p_60506_.getItemInHand(p_60507_);
                 ItemStack itemInMainHand = p_60506_.getMainHandItem();
                 ItemStack itemInOffHand = p_60506_.getOffhandItem();
@@ -387,7 +385,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                     if(jar.hasDust())
                     {
                         DustMagic magic = jar.getStoredDust();
-                        MessageUtils.messagePopupWithAppend(MODID, p_60506_,ChatFormatting.WHITE,MODID + ".dust_in_jar", Arrays.asList(MowLibReferences.MODID + "." +ColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
+                        MessageUtils.messagePopupWithAppend(MowLibReferences.MODID, p_60506_,ChatFormatting.WHITE,MowLibReferences.MODID + ".dust_in_jar", Arrays.asList(MowLibReferences.MODID + "." +ColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
                     }
                 }
             }

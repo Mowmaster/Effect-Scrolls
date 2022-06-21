@@ -2,6 +2,7 @@ package com.mowmaster.effectscrolls.Blocks.BlockEntities.DustJar;
 
 import com.mowmaster.effectscrolls.Registry.DeferredBlockEntityTypes;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
+import com.mowmaster.mowlib.Capabilities.Dust.DustTank;
 import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -128,10 +129,32 @@ public class DustJarBlockEntity extends BlockEntity {
                 DustMagic magic = new DustMagic(dustMagic.getDustColor(), drained);
                 if (action.execute() && drained > 0)
                 {
+                    if(drained>=dustMagic.getDustAmount())
+                    {
+                        dustMagic.setDustAmount(0);
+                        dustMagic.setDustColor(-1);
+                    }
+                    else
+                    {
+                        dustMagic.shrink(drained);
+                    }
+                    onContentsChanged();
+                }
+                return magic;
+
+                /*int drained = maxDrain;
+                if (dustMagic.getDustAmount() < drained)
+                {
+                    drained = dustMagic.getDustAmount();
+                }
+                DustMagic magic = new DustMagic(dustMagic.getDustColor(), drained);
+                if (action.execute() && drained > 0)
+                {
                     dustMagic.shrink(drained);
                     onContentsChanged();
                 }
                 return magic;
+                */
             }
         };
     }

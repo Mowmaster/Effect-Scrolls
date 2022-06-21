@@ -6,6 +6,7 @@ import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Items.BaseDustStorageBlockItem;
 import com.mowmaster.mowlib.MowLibUtils.ColorReference;
 import com.mowmaster.mowlib.MowLibUtils.MessageUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibReferences;
 import com.mowmaster.mowlib.MowLibUtils.TooltipUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -73,8 +74,8 @@ public class DustJarBlockItem extends BaseDustStorageBlockItem {
         DustMagic magic = DustMagic.getDustMagicInItemStack(p_40572_);
         if(magic.getDustColor() != -1)
         {
-            MutableComponent base = Component.translatable(References.MODID + ".dust_in_jar");
-            MutableComponent base2 = Component.translatable(References.MODID + "." + ColorReference.getColorName(magic.getDustColor()));
+            MutableComponent base = Component.translatable(MODID + ".dust_in_jar");
+            MutableComponent base2 = Component.translatable(MODID + "." + ColorReference.getColorName(magic.getDustColor()));
             base.append(base2);
             base.append(": ");
             base.append(""+magic.getDustAmount()+"");
