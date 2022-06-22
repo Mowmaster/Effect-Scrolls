@@ -29,12 +29,15 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static com.mowmaster.effectscrolls.EffectScrollsUtils.References.MODID;
@@ -183,6 +186,27 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
                 }
             }
         }
+    }
+
+    //Should Fix Building Gadgets dropps issues
+    //https://github.com/Direwolf20-MC/MiningGadgets/blob/1.19/src/main/java/com/direwolf20/mininggadgets/common/tiles/RenderBlockTileEntity.java#L444
+    @Override
+    public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+        Random rand = new Random();
+        if (p_60537_.getBlock() instanceof BaseCrystalClusterBlock) {
+            List<ItemStack> stacks = new ArrayList<>();
+            ItemStack itemstack = new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get());
+            if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get()))itemstack.setCount(rand.nextInt(0, 1));
+            if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get()))itemstack.setCount(rand.nextInt(0, 2));
+            if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
+            if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
+
+            int getColor = ColorReference.getColorFromStateInt(p_60537_);
+            ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+            stacks.add(newStack);
+            return stacks;
+        }
+        return super.getDrops(p_60537_, p_60538_);
     }
 
     @Override

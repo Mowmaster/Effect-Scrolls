@@ -21,9 +21,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CryingObsidianBlock;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseColoredCrystalBlock extends BaseColoredBlock
@@ -32,12 +34,6 @@ public class BaseColoredCrystalBlock extends BaseColoredBlock
     {
         super(p_152915_);
         this.registerDefaultState(ColorReference.addColorToBlockState(this.defaultBlockState(),ColorReference.DEFAULTCOLOR));
-    }
-
-    //This only exists because i cant figure out how Mining Gadgets breaks blocks (currently my blocks dont drop when mined with their mod...)
-    @Override
-    public float defaultDestroyTime() {
-        return -0.01F;
     }
 
     @Override
