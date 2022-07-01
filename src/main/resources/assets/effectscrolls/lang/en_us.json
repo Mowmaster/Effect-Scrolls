@@ -1,9 +1,21 @@
 {
   "itemGroup.tab_effectscrollstab": "Effect Scrolls",
+
   "effectscrolls.error": "ERROR",
   "effectscrolls.description_shift": "Press Shift for More Info",
   "effectscrolls.description_alt": "Press Alt for More Info",
 
+  "effectscrolls.jei.node_crafting": "Crystal Node Conversion",
+  "effectscrolls.jei.crystal_cluster_modifier": "Cluster / Scroll Modifiers",
+  "effectscrolls.jei.crystal_cluster_fuels": "Crystal Cluster Fuels",
+
+
+  "effectscrolls.crystal_cluster_modifier.duration": "Duration Modifier: ",
+  "effectscrolls.crystal_cluster_modifier.modifier": "Potency Modifier: ",
+  "effectscrolls.crystal_cluster_modifier.corruption": "Corrupts Effect: ",
+
+  "effectscrolls.crystal_cluster_fuels.duration": "Base Duration: ",
+  "effectscrolls.crystal_cluster_fuels.modifier": "Potency Cap: ",
 
   "effectscrolls.crystal_node.set_success": "Crystal Node Created!",
   "effectscrolls.crystal_node.set_fail": "This Block Isnt Budding Amethyst...",

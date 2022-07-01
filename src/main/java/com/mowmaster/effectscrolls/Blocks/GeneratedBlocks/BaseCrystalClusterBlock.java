@@ -30,6 +30,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -194,22 +195,36 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
     public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
         Random rand = new Random();
         if (p_60537_.getBlock() instanceof BaseCrystalClusterBlock) {
-            List<ItemStack> stacks = new ArrayList<>();
-            ItemStack itemstack = new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get());
-            if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get()))itemstack.setCount(rand.nextInt(0, 1));
-            if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get()))itemstack.setCount(rand.nextInt(0, 2));
-            if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
-            if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
 
-            int getColor = ColorReference.getColorFromStateInt(p_60537_);
-            ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
-            stacks.add(newStack);
-            return stacks;
+            List<ItemStack> stacks = new ArrayList<>();
+
+            if(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH,p_60538_.getParameter(LootContextParams.TOOL))>0)
+            {
+                ItemStack itemstack = new ItemStack(this);
+                int getColor = ColorReference.getColorFromStateInt(p_60537_);
+                ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                newStack.setCount(1);
+                stacks.add(newStack);
+                return stacks;
+            }
+            else
+            {
+                ItemStack itemstack = new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get());
+                if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get()))itemstack.setCount(rand.nextInt(0, 1));
+                if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get()))itemstack.setCount(rand.nextInt(0, 2));
+                if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
+                if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
+
+                int getColor = ColorReference.getColorFromStateInt(p_60537_);
+                ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                stacks.add(newStack);
+                return stacks;
+            }
         }
         return super.getDrops(p_60537_, p_60538_);
     }
 
-    @Override
+    /*@Override
     public void onRemove(BlockState p_60515_, Level p_60516_, BlockPos p_60517_, BlockState p_60518_, boolean p_60519_) {
         //&& !(p_60518_.getBlock() instanceof BaseCrystalClusterBlock)
         if(!p_60516_.isClientSide() && p_60519_)
@@ -230,7 +245,7 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
             }
         }
         super.onRemove(p_60515_, p_60516_, p_60517_, p_60518_, p_60519_);
-    }
+    }*/
 
 
     @Override
@@ -238,7 +253,7 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
         return true;
     }
 
-    @Override
+    /*@Override
     public void onBlockExploded(BlockState state, Level level, BlockPos pos, Explosion explosion) {
         if(!level.isClientSide())
         {
@@ -297,7 +312,7 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
             }
             else super.playerWillDestroy(p_56212_, p_56213_, p_56214_, p_56215_);
         }
-    }
+    }*/
 
     private float getExplosionSize(BlockState state)
     {
