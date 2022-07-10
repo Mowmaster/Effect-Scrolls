@@ -38,6 +38,8 @@ import java.util.List;
 
 import static com.mowmaster.mowlib.MowLibUtils.MowLibReferences.MODID;
 
+import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler.DustAction;
+
 public class ScrollCrafterBlockEntity_T15 extends BaseBuiltMachineBlockEntity {
 
     private LazyOptional<IItemHandler> tableItemHandler = LazyOptional.of(this::createTableItemHandler);

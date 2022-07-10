@@ -46,6 +46,8 @@ import java.util.List;
 
 import static com.mowmaster.effectscrolls.EffectScrollsUtils.References.MODID;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class EffectCrystalClusterBlock extends Block implements SimpleWaterloggedBlock, EntityBlock
 {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

@@ -1,8 +1,0 @@
-{
-  "parent": "effectscrolls:item/upgrade_pedestal_export",
-"textures": {
-"coin": "effectscrolls:items/models/upgrades/pedestal_upgrade_fx",
-"letter": "effectscrolls:items/models/upgrades/pedestal_upgrade_export",
-"part": "effectscrolls:items/models/upgrades/pedestal_upgrade_fx"
-}
-}

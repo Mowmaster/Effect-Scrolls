@@ -1,10 +1,10 @@
 {
 "parent": "effectscrolls:item/scroll/scroll_small",
   "textures": {
-    "0": "effectscrolls:items/models/upgrades/pedestal_upgrade",
+    "0": "effectscrolls:items/scroll/pedestal_upgrade_gold",
     "1": "effectscrolls:items/scroll/ribbons",
     "2": "effectscrolls:items/scroll/scroll_1",
-    "particle": "effectscrolls:items/models/upgrades/pedestal_upgrade"
+    "particle": "effectscrolls:items/scroll/pedestal_upgrade_gold"
   },
   "overrides": [
     { "predicate": { "effectscrolls:scroll_mode": 0}, "model": "effectscrolls:item/scroll/scroll_small"},

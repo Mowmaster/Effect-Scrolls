@@ -28,6 +28,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class BaseColoredCrystalBlock extends BaseColoredBlock
 {
     public BaseColoredCrystalBlock(Properties p_152915_)

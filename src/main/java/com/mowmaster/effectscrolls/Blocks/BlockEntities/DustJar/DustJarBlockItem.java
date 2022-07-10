@@ -22,6 +22,8 @@ import java.util.List;
 
 import static com.mowmaster.mowlib.MowLibUtils.MowLibReferences.MODID;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class DustJarBlockItem extends BaseDustStorageBlockItem {
     public DustJarBlockItem(Block p_40565_, Properties p_40566_) {
         super(p_40565_, p_40566_);

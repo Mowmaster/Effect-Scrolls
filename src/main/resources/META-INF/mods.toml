@@ -61,6 +61,6 @@ Effect Scrolls is a mod about making custom Scrolls that give you effects.
 modId="mowlib"
 mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-versionRange="[0.1.28,2.0.0)"
+versionRange="[0.1.29,2.0.0)"
 ordering="NONE"
 side="BOTH"

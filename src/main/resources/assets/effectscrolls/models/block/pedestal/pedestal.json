@@ -1,7 +1,0 @@
-{
-  "parent": "effectscrolls:block/pedestal/base_pedestal_models/pedestal_block",
-  "textures": {
-    "type": "effectscrolls:blocks/block_crystal_stone",
-    "typepart":"effectscrolls:blocks/block_crystal_stone"
-  }
-}

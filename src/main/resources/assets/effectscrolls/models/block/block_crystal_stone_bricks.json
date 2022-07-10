@@ -1,7 +1,0 @@
-{
-  "parent": "effectscrolls:block/block_crystal",
-  "textures": {
-    "1": "effectscrolls:blocks/block_crystal_stone_bricks",
-    "particle": "effectscrolls:blocks/block_crystal_stone_bricks"
-  }
-}

@@ -13,7 +13,10 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.ForgeRenderTypes;
+import net.minecraftforge.client.NamedRenderTypeManager;
+import net.minecraftforge.client.RenderTypeGroup;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +27,7 @@ public class EffectScrollsClientRegistry
 {
 
     @SubscribeEvent
-    public static void registerItemColor(ColorHandlerEvent.Item event) {
+    public static void registerItemColor(RegisterColorHandlersEvent.Item event) {
 
         event.getItemColors().register((stack, color) ->
         {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterItems.COLORED_CRYSTAL.get());
@@ -93,7 +96,7 @@ public class EffectScrollsClientRegistry
     }
 
     @SubscribeEvent
-    public static void registerBlockColor(ColorHandlerEvent.Block event) {
+    public static void registerBlockColor(RegisterColorHandlersEvent.Block event) {
 
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
         {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_NODE.get());
@@ -143,13 +146,19 @@ public class EffectScrollsClientRegistry
 
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void registerLayers(FMLClientSetupEvent event)
     {
+        *//*NamedRenderTypeManager.preRegisterVanillaRenderTypes()
+        blockRenderTypes.put(new ResourceLocation("solid"), new RenderTypeGroup(RenderType.solid(), ForgeRenderTypes.ITEM_LAYERED_SOLID.get()));
+        blockRenderTypes.put(new ResourceLocation("cutout"), new RenderTypeGroup(RenderType.cutout(), ForgeRenderTypes.ITEM_LAYERED_CUTOUT.get()));
+        blockRenderTypes.put(new ResourceLocation("cutout_mipped"), new RenderTypeGroup(RenderType.cutoutMipped(), ForgeRenderTypes.ITEM_LAYERED_CUTOUT_MIPPED.get()));
+        blockRenderTypes.put(new ResourceLocation("translucent"), new RenderTypeGroup(RenderType.translucent(), ForgeRenderTypes.ITEM_LAYERED_TRANSLUCENT.get()));
+        blockRenderTypes.put(new ResourceLocation("tripwire"), new RenderTypeGroup(RenderType.tripwire(), ForgeRenderTypes.ITEM_LAYERED_TRANSLUCENT.get()));*//*
         ItemBlockRenderTypes.setRenderLayer(DeferredRegisterBlocks.BASE_WORKSTATION_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DeferredRegisterTileBlocks.BLOCK_CRAFTER_SCROLL_T15.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DeferredRegisterTileBlocks.BLOCK_DUST_JAR.get(), RenderType.cutout());
-    }
+    }*/
 
     public static void registerBlockEntityRenderers()
     {

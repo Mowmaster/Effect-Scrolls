@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 import static com.mowmaster.mowlib.MowLibUtils.MowLibReferences.MODID;
 
+import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler.DustAction;
+
 public class DustJarBlockEntity extends BlockEntity {
 
     private LazyOptional<IDustHandler> dustHandler = LazyOptional.of(this::createhandlerDust);

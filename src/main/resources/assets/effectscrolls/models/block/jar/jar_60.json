@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"render_type": "cutout",
 	"textures": {
 		"0": "effectscrolls:items/scroll/crystalglass",
 		"1": "effectscrolls:blocks/block_crystal_stone",

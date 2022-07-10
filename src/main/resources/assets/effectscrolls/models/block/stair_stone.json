@@ -1,8 +1,0 @@
-{
-  "parent": "effectscrolls:block/default_stairs",
-  "textures": {
-    "bottom": "effectscrolls:blocks/block_crystal_stone",
-    "top": "effectscrolls:blocks/block_crystal_stone",
-    "side": "effectscrolls:blocks/block_crystal_stone"
-  }
-}
