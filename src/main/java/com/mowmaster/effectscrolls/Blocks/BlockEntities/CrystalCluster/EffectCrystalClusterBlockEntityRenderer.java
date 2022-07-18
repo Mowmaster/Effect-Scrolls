@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterBlocks;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -106,10 +106,10 @@ public class EffectCrystalClusterBlockEntityRenderer implements BlockEntityRende
     {
         switch(crystalCount)
         {
-            case 1: return ColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get().defaultBlockState(),color);
-            case 2: return ColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get().defaultBlockState(),color);
-            case 3: return ColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get().defaultBlockState(),color);
-            case 4: return ColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get().defaultBlockState(),color);
+            case 1: return MowLibColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get().defaultBlockState(),color);
+            case 2: return MowLibColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get().defaultBlockState(),color);
+            case 3: return MowLibColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get().defaultBlockState(),color);
+            case 4: return MowLibColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get().defaultBlockState(),color);
             default: return Blocks.AIR.defaultBlockState();
         }
     }

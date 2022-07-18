@@ -10,8 +10,8 @@ import com.mowmaster.mowlib.BlockEntities.BaseBuiltMachineBlockEntity;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
 import com.mowmaster.mowlib.Items.EffectItemBase;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
-import com.mowmaster.mowlib.MowLibUtils.ContainerUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibContainerUtils;
 import com.mowmaster.mowlib.MowLibUtils.MowLibEffectUtils;
 import com.mowmaster.mowlib.MowLibUtils.MowLibItemUtils;
 import net.minecraft.core.BlockPos;
@@ -429,7 +429,7 @@ public class ScrollCrafterBlockEntity_T15 extends BaseBuiltMachineBlockEntity {
 
     @Nullable
     protected CrystalClusterModifiers getRecipeModifier(Level level, ItemStack stackIn) {
-        Container container = ContainerUtils.getContainer(1);
+        Container container = MowLibContainerUtils.getContainer(1);
         container.setItem(-1,stackIn);
         List<CrystalClusterModifiers> recipes = level.getRecipeManager().getRecipesFor(CrystalClusterModifiers.Type.INSTANCE,container,level);
         return recipes.size() > 0 ? recipes.stream().findFirst().get() : null;
@@ -683,7 +683,7 @@ public class ScrollCrafterBlockEntity_T15 extends BaseBuiltMachineBlockEntity {
                 {
                     EffectItemBase scroll = (EffectItemBase)returnedStack.getItem();
                     scroll.setEffectToItem(returnedStack, newInstance);
-                    ColorReference.addColorToItemStack(returnedStack,getStoredDust().getDustColor());
+                    MowLibColorReference.addColorToItemStack(returnedStack,getStoredDust().getDustColor());
                 }
             }
         }
@@ -706,7 +706,7 @@ public class ScrollCrafterBlockEntity_T15 extends BaseBuiltMachineBlockEntity {
             MobEffectInstance effect = scroll.getEffectFromItem(this.getScrollCrafted);
             if(effect.getEffect().isInstantenous())
             {
-                int scrollSize = scroll.getItemStackLimit(this.getScrollCrafted);
+                int scrollSize = scroll.getMaxStackSize(this.getScrollCrafted);
                 allowedCount = (allowedCount > scrollSize)?(scrollSize):(allowedCount);
             }
         }

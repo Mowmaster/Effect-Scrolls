@@ -3,7 +3,7 @@ package com.mowmaster.effectscrolls.Blocks;
 
 import com.mowmaster.mowlib.Blocks.BaseBlocks.BaseColoredBlock;
 import com.mowmaster.mowlib.Items.ColorApplicator;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.network.chat.Component;
@@ -35,7 +35,7 @@ public class BaseColoredCrystalBlock extends BaseColoredBlock
     public BaseColoredCrystalBlock(Properties p_152915_)
     {
         super(p_152915_);
-        this.registerDefaultState(ColorReference.addColorToBlockState(this.defaultBlockState(),ColorReference.DEFAULTCOLOR));
+        this.registerDefaultState(MowLibColorReference.addColorToBlockState(this.defaultBlockState(),MowLibColorReference.DEFAULTCOLOR));
     }
 
     @Override
@@ -45,14 +45,14 @@ public class BaseColoredCrystalBlock extends BaseColoredBlock
             Player player = ((Player)p_49850_);
             if((player.getOffhandItem().getItem() instanceof ColorApplicator) && player.isCreative())
             {
-                int getColor = ColorReference.getColorFromItemStackInt(player.getOffhandItem());
-                BlockState newState = ColorReference.addColorToBlockState(p_49849_,getColor);
+                int getColor = MowLibColorReference.getColorFromItemStackInt(player.getOffhandItem());
+                BlockState newState = MowLibColorReference.addColorToBlockState(p_49849_,getColor);
                 p_49847_.setBlock(p_49848_,newState,3);
             }
             else
             {
-                int getColor = ColorReference.getColorFromItemStackInt(p_49851_);
-                BlockState newState = ColorReference.addColorToBlockState(p_49849_,getColor);
+                int getColor = MowLibColorReference.getColorFromItemStackInt(p_49851_);
+                BlockState newState = MowLibColorReference.addColorToBlockState(p_49849_,getColor);
                 p_49847_.setBlock(p_49848_,newState,3);
             }
         }
@@ -63,8 +63,8 @@ public class BaseColoredCrystalBlock extends BaseColoredBlock
 
         if((p_60506_.getItemInHand(p_60507_).getItem() instanceof ColorApplicator) && p_60506_.isCreative())
         {
-            int getColor = ColorReference.getColorFromItemStackInt(p_60506_.getItemInHand(p_60507_));
-            BlockState newState = ColorReference.addColorToBlockState(p_60503_,getColor);
+            int getColor = MowLibColorReference.getColorFromItemStackInt(p_60506_.getItemInHand(p_60507_));
+            BlockState newState = MowLibColorReference.addColorToBlockState(p_60503_,getColor);
             p_60504_.setBlock(p_60505_,newState,3);
             //p_60504_.markAndNotifyBlock(p_60505_,null,p_60503_,newState,3,1);
             return InteractionResult.SUCCESS;

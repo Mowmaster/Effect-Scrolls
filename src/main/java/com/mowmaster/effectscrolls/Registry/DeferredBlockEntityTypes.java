@@ -15,7 +15,7 @@ import static com.mowmaster.effectscrolls.EffectScrollsUtils.References.MODID;
 public class DeferredBlockEntityTypes
 {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister
-            .create(ForgeRegistries.BLOCK_ENTITIES, MODID);
+            .create(ForgeRegistries.BLOCK_ENTITY_TYPES, MODID);
 
 
 

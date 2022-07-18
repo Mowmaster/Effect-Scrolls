@@ -3,9 +3,9 @@ package com.mowmaster.effectscrolls.Items;
 
 import com.mowmaster.effectscrolls.EffectScrollsUtils.References;
 import com.mowmaster.mowlib.Items.EffectItemBase;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
-import com.mowmaster.mowlib.MowLibUtils.NameComponentUtils;
-import com.mowmaster.mowlib.MowLibUtils.TooltipUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibNameComponentUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibTooltipUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -35,7 +35,7 @@ public class ScrollBase extends EffectItemBase
     }
 
     @Override
-    public int getItemStackLimit(ItemStack stack) {
+    public int getMaxStackSize(ItemStack stack) {
 
         if(getEffectFromItem(stack) !=null)
         {
@@ -54,7 +54,7 @@ public class ScrollBase extends EffectItemBase
 
     public static int getColorRender(ItemStack stack)
     {
-        return ColorReference.getColorFromItemStackInt(stack);
+        return MowLibColorReference.getColorFromItemStackInt(stack);
     }
 
     public static int getColorRenderRibbon(ItemStack stack)
@@ -94,7 +94,7 @@ public class ScrollBase extends EffectItemBase
             else if(category == MobEffectCategory.NEUTRAL) {return 43775;}//Blue
             else if(category == MobEffectCategory.HARMFUL) {return 16733525;}//Red
         }
-        return ColorReference.getColorFromItemStackInt(stack);
+        return MowLibColorReference.getColorFromItemStackInt(stack);
     }
 
     public static int getRenderType(ItemStack stack)
@@ -216,7 +216,7 @@ public class ScrollBase extends EffectItemBase
         MobEffectInstance getEffect = getEffectFromItem(p_41458_);
         if(getEffect != null)
         {
-            return NameComponentUtils.createComponentName(getEffect.getEffect().getDisplayName(), Component.translatable(References.MODID + ".effect_scroll.text").getString());
+            return MowLibNameComponentUtils.createComponentName(getEffect.getEffect().getDisplayName(), Component.translatable(References.MODID + ".effect_scroll.text").getString());
         }
 
         return super.getName(p_41458_);
@@ -238,11 +238,11 @@ public class ScrollBase extends EffectItemBase
             int seconds =  (int)(((double)(getEffect.getDuration()/20)%60));
             String time = "" + minutes + ":" + ((seconds<10)?("0"+seconds):(seconds)) + "";
             if(getEffect.getEffect().isInstantenous()) time = Component.translatable(References.MODID + ".effect_scroll.instant").getString() + getEffect.getDuration() + Component.translatable(References.MODID + ".effect_scroll.instant_time").getString();
-            TooltipUtils.addTooltipMessageWithStyle(p_41423_,getEffect.getEffect().getDisplayName().getString() + " " + TooltipUtils.getEnchantRomanNumeral(getEffect.getAmplifier()) + " - " + time,format);
+            MowLibTooltipUtils.addTooltipMessageWithStyle(p_41423_,getEffect.getEffect().getDisplayName().getString() + " " + MowLibTooltipUtils.getEnchantRomanNumeral(getEffect.getAmplifier()) + " - " + time,format);
         }
 
         List<String> listy = Arrays.asList("effectscrolls" + ".effect_scroll.use", "effectscrolls" + ".effect_scroll.use_on");
         List<ChatFormatting> chatty = Arrays.asList(ChatFormatting.GOLD,ChatFormatting.GREEN);
-        TooltipUtils.addTooltipShiftMessageMultiWithStyle("effectscrolls", p_41423_,listy,chatty);
+        MowLibTooltipUtils.addTooltipShiftMessageMultiWithStyle("effectscrolls", p_41423_,listy,chatty);
     }
 }

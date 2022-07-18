@@ -7,8 +7,8 @@ import com.mowmaster.mowlib.Blocks.BaseBlocks.BaseColoredBlock;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
 import com.mowmaster.mowlib.Items.ColorApplicator;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
-import com.mowmaster.mowlib.MowLibUtils.MessageUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibMessageUtils;
 import com.mowmaster.mowlib.MowLibUtils.MowLibReferences;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -47,7 +47,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
 
     public DustJarBlock(BlockBehaviour.Properties p_152915_) {
         super(p_152915_);
-        this.registerDefaultState(ColorReference.addColorToBlockState(this.defaultBlockState(),ColorReference.DEFAULTCOLOR));
+        this.registerDefaultState(MowLibColorReference.addColorToBlockState(this.defaultBlockState(),MowLibColorReference.DEFAULTCOLOR));
         this.JAR = Shapes.or(Block.box(3.0D, 0.0D, 3.0D, 13.0D, 13.0D, 13.0D));
     }
 
@@ -59,7 +59,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
     @Override
     public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
         ItemStack picked = state.getBlock().getCloneItemStack(world, pos, state);
-        int getColor = ColorReference.getColorFromStateInt(state);
+        int getColor = MowLibColorReference.getColorFromStateInt(state);
         if(world.getBlockEntity(pos) instanceof DustJarBlockEntity)
         {
             DustJarBlockEntity jar = (DustJarBlockEntity)world.getBlockEntity(pos);
@@ -74,7 +74,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                 picked.setTag(tagToAdd);
             }
         }
-        return ColorReference.addColorToItemStack(picked,getColor);
+        return MowLibColorReference.addColorToItemStack(picked,getColor);
     }
 
     @Override
@@ -87,10 +87,10 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
             {
                 DustMagic getJarMagic = DustMagic.getDustMagicInItemStack(p_49851_);
                 int capacity = (p_49851_.getTag().contains(MODID + "_dustCapacity"))?(p_49851_.getTag().getInt(MODID + "_dustCapacity")):(1000);
-                int color = ColorReference.getColorFromItemStackInt(p_49851_);
-                if(player.getOffhandItem().getItem() instanceof ColorApplicator)color = ColorReference.getColorFromItemStackInt(player.getOffhandItem());
+                int color = MowLibColorReference.getColorFromItemStackInt(p_49851_);
+                if(player.getOffhandItem().getItem() instanceof ColorApplicator)color = MowLibColorReference.getColorFromItemStackInt(player.getOffhandItem());
 
-                p_49847_.setBlockAndUpdate(p_49848_,ColorReference.addColorToBlockState(p_49849_,color));
+                p_49847_.setBlockAndUpdate(p_49848_,MowLibColorReference.addColorToBlockState(p_49849_,color));
 
                 DustJarBlockEntity jar = (DustJarBlockEntity)p_49847_.getBlockEntity(p_49848_);
                 jar.setDustCapacity(capacity);
@@ -112,8 +112,8 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
             if (p_56214_.getBlock() instanceof DustJarBlock) {
                 if (!p_56212_.isClientSide && !p_56215_.isCreative()) {
                     ItemStack itemstack = new ItemStack(DeferredRegisterTileBlocks.BLOCK_DUST_JAR.get());
-                    int getColor = ColorReference.getColorFromStateInt(p_56214_);
-                    ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                    int getColor = MowLibColorReference.getColorFromStateInt(p_56214_);
+                    ItemStack newStack = MowLibColorReference.addColorToItemStack(itemstack,getColor);
                     newStack.setCount(1);
                     if(p_56212_.getBlockEntity(p_56213_) instanceof DustJarBlockEntity)
                     {
@@ -208,7 +208,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInOffHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
                             }
                             else
                             {
@@ -216,7 +216,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInOffHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
                             }
                         }
                     }
@@ -238,7 +238,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInMainHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
                             }
                             else
                             {
@@ -246,7 +246,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInMainHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
                             }
                         }
                     }
@@ -267,7 +267,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInOffHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
                             }
                             else
                             {
@@ -275,7 +275,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInOffHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(MODID, p_60502_,ChatFormatting.WHITE,MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+jar.getStoredDust().getDustAmount()+""));
                             }
                         }
                     }
@@ -300,15 +300,15 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
 
                 if(itemInMainHand.getItem() instanceof ColorApplicator)
                 {
-                    int getColor = ColorReference.getColorFromItemStackInt(itemInMainHand);
-                    BlockState newState = ColorReference.addColorToBlockState(p_60503_,getColor);
+                    int getColor = MowLibColorReference.getColorFromItemStackInt(itemInMainHand);
+                    BlockState newState = MowLibColorReference.addColorToBlockState(p_60503_,getColor);
                     p_60504_.setBlock(p_60505_,newState,3);
                     return InteractionResult.SUCCESS;
                 }
                 else if(itemInOffHand.getItem() instanceof ColorApplicator)
                 {
-                    int getColor = ColorReference.getColorFromItemStackInt(itemInOffHand);
-                    BlockState newState = ColorReference.addColorToBlockState(p_60503_,getColor);
+                    int getColor = MowLibColorReference.getColorFromItemStackInt(itemInOffHand);
+                    BlockState newState = MowLibColorReference.addColorToBlockState(p_60503_,getColor);
                     p_60504_.setBlock(p_60505_,newState,3);
                     return InteractionResult.SUCCESS;
                 }
@@ -385,7 +385,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                     if(jar.hasDust())
                     {
                         DustMagic magic = jar.getStoredDust();
-                        MessageUtils.messagePopupWithAppend(MowLibReferences.MODID, p_60506_,ChatFormatting.WHITE,MowLibReferences.MODID + ".dust_in_jar", Arrays.asList(MowLibReferences.MODID + "." +ColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
+                        MowLibMessageUtils.messagePopupWithAppend(MowLibReferences.MODID, p_60506_,ChatFormatting.WHITE,MowLibReferences.MODID + ".dust_in_jar", Arrays.asList(MowLibReferences.MODID + "." +MowLibColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
                     }
                 }
             }

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix4f;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
@@ -37,7 +37,7 @@ public class DustJarBlockEntityRender implements BlockEntityRenderer<DustJarBloc
             double amount = (float)magic.getDustAmount();
             double capacity = (float)p_112307_.getDustCapacity();
             double heightRenderMultiplier = (double)(10.0 * (amount/capacity));
-            List<Integer> colorList = ColorReference.getTrueColorFromInt(magic.getDustColor());
+            List<Integer> colorList = MowLibColorReference.getTrueColorFromInt(magic.getDustColor());
 
             @SuppressWarnings("deprecation")
             TextureAtlasSprite dustSprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(new ResourceLocation(MODID, "util/crystal_dust"));

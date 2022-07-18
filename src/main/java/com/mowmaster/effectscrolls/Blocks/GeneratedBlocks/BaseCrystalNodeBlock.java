@@ -5,8 +5,8 @@ import com.mowmaster.effectscrolls.EffectScrollConfig.EffectScrollsConfig;
 import com.mowmaster.effectscrolls.Recipes.CrystalNodeRecipe;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterBlocks;
 import com.mowmaster.mowlib.Blocks.BaseBlocks.BaseColoredBlock;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
-import com.mowmaster.mowlib.MowLibUtils.ContainerUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibContainerUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -43,7 +43,7 @@ public class BaseCrystalNodeBlock extends BaseColoredCrystalBlock
 
     @Nullable
     protected CrystalNodeRecipe getRecipe(Level level, ItemStack stackIn) {
-        Container cont = ContainerUtils.getContainer(1);
+        Container cont = MowLibContainerUtils.getContainer(1);
         cont.setItem(-1,stackIn);
         List<CrystalNodeRecipe> recipes = level.getRecipeManager().getRecipesFor(CrystalNodeRecipe.Type.INSTANCE,cont,level);
         return recipes.size() > 0 ? level.getRecipeManager().getRecipesFor(CrystalNodeRecipe.Type.INSTANCE,cont,level).get(0) : null;
@@ -59,30 +59,30 @@ public class BaseCrystalNodeBlock extends BaseColoredCrystalBlock
             BlockState blockstateOrigin = p_222955_.getBlockState(p_222956_);
             BlockPos blockpos = p_222956_.relative(direction);
             BlockState blockstate = p_222955_.getBlockState(blockpos);
-            int getColor = ColorReference.DEFAULTCOLOR;
+            int getColor = MowLibColorReference.DEFAULTCOLOR;
             Block block = null;
             Collection<ItemStack> jsonResults = getProcessResults(getRecipe(p_222955_,new ItemStack(blockstate.getBlock())));
             ItemStack returnedRecipe = ItemStack.EMPTY;
 
             if (canClusterGrowAtState(blockstate)) {
                 blockstate = p_222955_.getBlockState(p_222956_);
-                getColor = ColorReference.getColorFromStateInt(blockstate);
+                getColor = MowLibColorReference.getColorFromStateInt(blockstate);
                 block = DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get();
             } else if (blockstate.is(DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get()) && blockstate.getValue(BaseCrystalClusterBlock.FACING) == direction) {
-                getColor = ColorReference.getColorFromStateInt(blockstate);
+                getColor = MowLibColorReference.getColorFromStateInt(blockstate);
                 block = DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get();
             } else if (blockstate.is(DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get()) && blockstate.getValue(BaseCrystalClusterBlock.FACING) == direction) {
-                getColor = ColorReference.getColorFromStateInt(blockstate);
+                getColor = MowLibColorReference.getColorFromStateInt(blockstate);
                 block = DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get();
             } else if (blockstate.is(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()) && blockstate.getValue(BaseCrystalClusterBlock.FACING) == direction) {
-                getColor = ColorReference.getColorFromStateInt(blockstate);
+                getColor = MowLibColorReference.getColorFromStateInt(blockstate);
                 block = DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get();
             } else if(!jsonResults.iterator().next().isEmpty())
             {
                 //Make Colored Stone Here Now
                 returnedRecipe = (jsonResults.iterator().next().isEmpty())?(ItemStack.EMPTY):(jsonResults.iterator().next());
                 blockstate = p_222955_.getBlockState(p_222956_);
-                getColor = ColorReference.getColorFromStateInt(blockstate);
+                getColor = MowLibColorReference.getColorFromStateInt(blockstate);
                 if(returnedRecipe.getItem() instanceof BlockItem)
                 {
                     block = Block.byItem(returnedRecipe.getItem());
@@ -94,25 +94,25 @@ public class BaseCrystalNodeBlock extends BaseColoredCrystalBlock
             if (block != null) {
                 if(block instanceof BaseCrystalClusterBlock)
                 {
-                    BlockState blockstate1 = ColorReference.addColorToBlockState(block.defaultBlockState(),getColor).setValue(BaseCrystalClusterBlock.FACING, direction).setValue(BaseCrystalClusterBlock.WATERLOGGED, Boolean.valueOf(blockstate.getFluidState().getType() == Fluids.WATER));
+                    BlockState blockstate1 = MowLibColorReference.addColorToBlockState(block.defaultBlockState(),getColor).setValue(BaseCrystalClusterBlock.FACING, direction).setValue(BaseCrystalClusterBlock.WATERLOGGED, Boolean.valueOf(blockstate.getFluidState().getType() == Fluids.WATER));
                     p_222955_.setBlockAndUpdate(blockpos, blockstate1);
                 }
                 else if(block instanceof BaseColoredBlock)
                 {
                     if(p_222955_.getBlockState(blockpos).getBlock() instanceof BaseColoredBlock)
                     {
-                        int colorOrigin = ColorReference.getColorFromStateInt(blockstateOrigin);
-                        int colorToMix = ColorReference.getColorFromStateInt(p_222955_.getBlockState(blockpos));
+                        int colorOrigin = MowLibColorReference.getColorFromStateInt(blockstateOrigin);
+                        int colorToMix = MowLibColorReference.getColorFromStateInt(p_222955_.getBlockState(blockpos));
                         if(colorOrigin != colorToMix)
                         {
-                            int colorMix = ColorReference.mixColorsInt(colorOrigin,colorToMix);
-                            BlockState blockstate1 = ColorReference.addColorToBlockState(block.defaultBlockState(),colorMix);
+                            int colorMix = MowLibColorReference.mixColorsInt(colorOrigin,colorToMix);
+                            BlockState blockstate1 = MowLibColorReference.addColorToBlockState(block.defaultBlockState(),colorMix);
                             p_222955_.setBlockAndUpdate(blockpos, blockstate1);
                         }
                     }
                     else if(!jsonResults.iterator().next().isEmpty())
                     {
-                        BlockState blockstate1 = ColorReference.addColorToBlockState(block.defaultBlockState(),getColor);
+                        BlockState blockstate1 = MowLibColorReference.addColorToBlockState(block.defaultBlockState(),getColor);
                         p_222955_.setBlockAndUpdate(blockpos, blockstate1);
                     }
                 }
@@ -121,7 +121,7 @@ public class BaseCrystalNodeBlock extends BaseColoredCrystalBlock
             {
                 if(ForgeRegistries.ITEMS.getKey(returnedRecipe.getItem()).getNamespace().equals(MODID))
                 {
-                    ColorReference.addColorToItemStack(returnedRecipe,getColor);
+                    MowLibColorReference.addColorToItemStack(returnedRecipe,getColor);
                 }
                 ItemEntity itemEn = new ItemEntity(p_222955_,blockpos.getX()+0.5,blockpos.getY()+0.5,blockpos.getZ()+0.5,returnedRecipe);
                 itemEn.setInvulnerable(true);

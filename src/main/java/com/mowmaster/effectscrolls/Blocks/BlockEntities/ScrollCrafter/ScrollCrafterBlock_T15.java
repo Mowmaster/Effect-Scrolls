@@ -7,8 +7,8 @@ import com.mowmaster.effectscrolls.Registry.DeferredBlockEntityTypes;
 import com.mowmaster.mowlib.BlockEntities.BaseBuiltMachineBlock;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
-import com.mowmaster.mowlib.MowLibUtils.MessageUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibMessageUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -51,7 +51,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
 
     public ScrollCrafterBlock_T15(BlockBehaviour.Properties p_152915_) {
         super(p_152915_);
-        this.registerDefaultState(ColorReference.addColorToBlockState(this.defaultBlockState(), ColorReference.DEFAULTCOLOR).setValue(SIDED_ROTATION_4, Direction.NORTH));
+        this.registerDefaultState(MowLibColorReference.addColorToBlockState(this.defaultBlockState(), MowLibColorReference.DEFAULTCOLOR).setValue(SIDED_ROTATION_4, Direction.NORTH));
         this.TABLE = Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 4.0D, 12.0D, 4.0D),
                 Block.box(12.0D, 0.0D, 12.0D, 16.0D, 12.0D, 16.0D),
                 Block.box(0.0D, 0.0D, 12.0D, 4.0D, 12.0D, 16.0D),
@@ -67,8 +67,8 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
     @Override
     public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
         ItemStack picked = state.getBlock().getCloneItemStack(world, pos, state);
-        int getColor = ColorReference.getColorFromStateInt(state);
-        return ColorReference.addColorToItemStack(picked,getColor);
+        int getColor = MowLibColorReference.getColorFromStateInt(state);
+        return MowLibColorReference.addColorToItemStack(picked,getColor);
     }
 
     @Override
@@ -77,13 +77,13 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
         BlockPos blockpos = p_48689_.getClickedPos();
         Direction direction = p_48689_.getClickedFace();
         BlockState blockstate = levelaccessor.getBlockState(p_48689_.getClickedPos().relative(direction.getOpposite()));
-        int getColor = ColorReference.getColorFromStateInt(blockstate);
+        int getColor = MowLibColorReference.getColorFromStateInt(blockstate);
         return blockstate.is(this) &&
                 blockstate.getValue(SIDED_ROTATION_4) == direction
                 ?
-                ColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(SIDED_ROTATION_4, p_48689_.getHorizontalDirection())
+                MowLibColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(SIDED_ROTATION_4, p_48689_.getHorizontalDirection())
                 :
-                ColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(SIDED_ROTATION_4, p_48689_.getHorizontalDirection().getOpposite());
+                MowLibColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(SIDED_ROTATION_4, p_48689_.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -156,7 +156,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInOffHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(References.MODID, p_60502_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+scrollCrafter.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(References.MODID, p_60502_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+scrollCrafter.getStoredDust().getDustAmount()+""));
                             }
                             else
                             {
@@ -164,7 +164,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInOffHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(References.MODID,p_60502_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+scrollCrafter.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(References.MODID,p_60502_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+scrollCrafter.getStoredDust().getDustAmount()+""));
                             }
                         }
                     }
@@ -184,7 +184,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInMainHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(References.MODID, p_60502_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+scrollCrafter.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(References.MODID, p_60502_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+scrollCrafter.getStoredDust().getDustAmount()+""));
                             }
                             else
                             {
@@ -192,7 +192,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                                 if(getJarMagic.getDustColor()<0 && getJarMagic.getDustAmount()<=0) { getJarMagic = crafterRemoval; }
                                 else { getJarMagic.setDustAmount((getJarMagic.getDustAmount() + crafterRemoval.getDustAmount())); }
                                 DustMagic.setDustMagicInStack(itemInMainHand,getJarMagic);
-                                MessageUtils.messagePopupWithAppend(References.MODID, p_60502_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+scrollCrafter.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(References.MODID, p_60502_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+scrollCrafter.getStoredDust().getDustAmount()+""));
                             }
                         }
                     }
@@ -226,7 +226,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                             if(table.addDust(DustMagic.getDustMagicInItemStack(itemInHand), IDustHandler.DustAction.SIMULATE)>0)
                             {
                                 itemInHand.shrink(table.addDust(DustMagic.getDustMagicInItemStack(itemInHand), IDustHandler.DustAction.EXECUTE));
-                                MessageUtils.messagePopupWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+table.getStoredDust().getDustAmount()+""));
+                                MowLibMessageUtils.messagePopupWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+table.getStoredDust().getDustAmount()+""));
                                 return InteractionResult.SUCCESS;
                             }
                         }
@@ -236,7 +236,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                         if(table.addDust(DustMagic.getDustMagicInItemStack(itemInHand), IDustHandler.DustAction.SIMULATE)>0)
                         {
                             itemInHand.shrink(table.addDust(DustMagic.getDustMagicInItemStack(itemInHand), IDustHandler.DustAction.EXECUTE));
-                            MessageUtils.messagePopupWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+table.getStoredDust().getDustAmount()+""));
+                            MowLibMessageUtils.messagePopupWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+table.getStoredDust().getDustAmount()+""));
                             return InteractionResult.SUCCESS;
                         }
                     }
@@ -264,7 +264,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                                         int magicLeftAmount = magicJar.getDustAmount()-countHappened;
                                         DustMagic magicLeft = (magicLeftAmount<=0)?(new DustMagic(-1, 0)):(new DustMagic(magicJar.getDustColor(),magicLeftAmount));
                                         DustMagic.setDustMagicInStack(itemInHand,magicLeft);
-                                        MessageUtils.messagePopupWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+table.getStoredDust().getDustAmount()+""));
+                                        MowLibMessageUtils.messagePopupWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+table.getStoredDust().getDustAmount()+""));
                                         return InteractionResult.SUCCESS;
                                     }
                                 }
@@ -280,7 +280,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                                 if(table.addDust(magicJar, IDustHandler.DustAction.EXECUTE) > 0)
                                 {
                                     DustMagic.setDustMagicInStack(itemInHand,new DustMagic(-1, 0));
-                                    MessageUtils.messagePopupWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+table.getStoredDust().getDustAmount()+""));
+                                    MowLibMessageUtils.messagePopupWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dustmagic_amount_post_removal", Arrays.asList(""+table.getStoredDust().getDustAmount()+""));
                                     return InteractionResult.SUCCESS;
                                 }
                             }
@@ -305,9 +305,9 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                             itemInHand.shrink(stackReturned.getCount());
                             ItemHandlerHelper.giveItemToPlayer(p_60506_,stackReturned);
                         }
-                        else {MessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,References.MODID + ".scroll_crafter.not_enough_dust");}
+                        else {MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,References.MODID + ".scroll_crafter.not_enough_dust");}
                     }
-                    else {MessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,References.MODID + ".scroll_crafter.not_enough_to_craft");}
+                    else {MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,References.MODID + ".scroll_crafter.not_enough_to_craft");}
                 }
                 else if(itemInMainHand.isEmpty())
                 {
@@ -316,9 +316,9 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                         if(table.hasDust())
                         {
                             DustMagic magic = table.getStoredDust();
-                            MessageUtils.messagePlayerChatWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dust_in_jar", Arrays.asList(ColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
+                            MowLibMessageUtils.messagePlayerChatWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dust_in_jar", Arrays.asList(MowLibColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
                         }
-                        if(!table.getScrollCrafted().isEmpty())MessageUtils.messagePlayerChat(p_60506_,ChatFormatting.RED,table.getScrollCrafted().getDisplayName().getString());
+                        if(!table.getScrollCrafted().isEmpty())MowLibMessageUtils.messagePlayerChat(p_60506_,ChatFormatting.RED,table.getScrollCrafted().getDisplayName().getString());
                     }
                 }
             }

@@ -3,8 +3,8 @@ package com.mowmaster.effectscrolls.EventHandlers;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterBlocks;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterItems;
 import com.mowmaster.mowlib.Items.ColorApplicator;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
-import com.mowmaster.mowlib.MowLibUtils.MessageUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibMessageUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -38,10 +38,10 @@ public class MakeRandomCrystalNode {
     @SubscribeEvent()
     public static void makeRandomCrystalNode(PlayerInteractEvent.RightClickBlock event)
     {
-        if(!(event.getPlayer() instanceof FakePlayer))
+        if(!(event.getEntity() instanceof FakePlayer))
         {
-            Level level = event.getWorld();
-            Player player = event.getPlayer();
+            Level level = event.getLevel();
+            Player player = event.getEntity();
             InteractionHand hand = event.getHand();
             BlockPos pos = event.getPos();
 
@@ -49,17 +49,17 @@ public class MakeRandomCrystalNode {
             {
                 if(player.getItemInHand(hand).getItem().equals(DeferredRegisterItems.COLORED_NODE_MAKER.get()))
                 {
-                    int colorListSize = ColorReference.ALL_COLORS.size();
+                    int colorListSize = MowLibColorReference.ALL_COLORS.size();
                     int randomColor = new Random().nextInt(colorListSize-1);
-                    int getColor = ColorReference.ALL_COLORS.get(randomColor);
+                    int getColor = MowLibColorReference.ALL_COLORS.get(randomColor);
                     BlockState oldBlock = level.getBlockState(pos);
                     if(oldBlock.getBlock() instanceof BuddingAmethystBlock)
                     {
-                        level.setBlock(pos, ColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_NODE.get().defaultBlockState(),getColor) ,3);
+                        level.setBlock(pos, MowLibColorReference.addColorToBlockState(DeferredRegisterBlocks.CRYSTAL_NODE.get().defaultBlockState(),getColor) ,3);
                         player.getItemInHand(InteractionHand.MAIN_HAND).shrink(1);
-                        MessageUtils.messagePopup(player, ChatFormatting.GREEN, MODID + ".crystal_node.set_success");
+                        MowLibMessageUtils.messagePopup(player, ChatFormatting.GREEN, MODID + ".crystal_node.set_success");
                     }
-                    else MessageUtils.messagePopup(player, ChatFormatting.RED, MODID + ".crystal_node.set_fail");
+                    else MowLibMessageUtils.messagePopup(player, ChatFormatting.RED, MODID + ".crystal_node.set_fail");
                 }
             }
         }

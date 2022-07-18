@@ -2,8 +2,8 @@ package com.mowmaster.effectscrolls.Blocks.BlockEntities.CrystalCluster;
 
 import com.mowmaster.effectscrolls.Items.ColoredCrystalBase;
 import com.mowmaster.effectscrolls.Registry.DeferredBlockEntityTypes;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
-import com.mowmaster.mowlib.MowLibUtils.MessageUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibMessageUtils;
 import com.mowmaster.mowlib.MowLibUtils.MowLibEffectUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -113,7 +113,7 @@ public class EffectCrystalClusterBlock extends Block implements SimpleWaterlogge
         BlockPos blockpos = p_152019_.getClickedPos();
         Direction direction = p_152019_.getClickedFace();
         BlockState blockstate = p_152019_.getLevel().getBlockState(p_152019_.getClickedPos().relative(direction.getOpposite()));
-        int getColor = ColorReference.getColorFromStateInt(blockstate);
+        int getColor = MowLibColorReference.getColorFromStateInt(blockstate);
         //Also copied the facing direction stuff from EndRodBlock
         return blockstate.is(this) &&
                 blockstate.getValue(FACING) == direction
@@ -176,19 +176,19 @@ public class EffectCrystalClusterBlock extends Block implements SimpleWaterlogge
                     if(!p_60506_.isCreative() && cluster.crystalCount()>0)
                     {
                         //TODO: Change this to check player if they CAN Mix Colors
-                        if(ColorReference.getColorFromItemStackInt(itemInHand) == cluster.getCurrentColor())
+                        if(MowLibColorReference.getColorFromItemStackInt(itemInHand) == cluster.getCurrentColor())
                         {
                             if(cluster.addCrystal(itemInHand,true)){
 
                                 if(cluster.addCrystal(itemInHand,false))
                                 {
                                     itemInHand.shrink(1);
-                                    MessageUtils.messagePopupWithAppend(MODID, p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.crystal_add", Arrays.asList(MowLibEffectUtils.getEffectForColor(p_60504_, itemInHand, cluster.hasCorruption(), cluster.getCurrentColor()).getDisplayName().getString()));
+                                    MowLibMessageUtils.messagePopupWithAppend(MODID, p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.crystal_add", Arrays.asList(MowLibEffectUtils.getEffectForColor(p_60504_, itemInHand, cluster.hasCorruption(), cluster.getCurrentColor()).getDisplayName().getString()));
                                     return InteractionResult.SUCCESS;
                                 }
                             }
                         }
-                        else MessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.color_mix");
+                        else MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.color_mix");
 
                     }
                     else
@@ -198,7 +198,7 @@ public class EffectCrystalClusterBlock extends Block implements SimpleWaterlogge
                             if(cluster.addCrystal(itemInHand,false))
                             {
                                 itemInHand.shrink(1);
-                                MessageUtils.messagePopupWithAppend(MODID, p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.crystal_add",
+                                MowLibMessageUtils.messagePopupWithAppend(MODID, p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.crystal_add",
                                         Arrays.asList(MowLibEffectUtils.getEffectForColor(p_60504_, itemInHand, cluster.hasCorruption(), cluster.getCurrentColor()).getDisplayName().getString()));
                                 return InteractionResult.SUCCESS;
                             }
@@ -211,23 +211,23 @@ public class EffectCrystalClusterBlock extends Block implements SimpleWaterlogge
                 {
                     ItemHandlerHelper.giveItemToPlayer(p_60506_,cluster.addBaseBlock(itemInHand));
                     itemInHand.shrink(1);
-                    if(cluster.getEntityForFilter(cluster.getBaseBlock()) == "")MessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed");
-                    else if(cluster.isFilteredEntityBaby(cluster.getBaseBlock()))MessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type", MODID + ".crystal_cluster.base_baby", cluster.getEntityForFilter(cluster.getBaseBlock())));
-                    else MessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type",cluster.getEntityForFilter(cluster.getBaseBlock())));
+                    if(cluster.getEntityForFilter(cluster.getBaseBlock()) == "")MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed");
+                    else if(cluster.isFilteredEntityBaby(cluster.getBaseBlock()))MowLibMessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type", MODID + ".crystal_cluster.base_baby", cluster.getEntityForFilter(cluster.getBaseBlock())));
+                    else MowLibMessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type",cluster.getEntityForFilter(cluster.getBaseBlock())));
                     return InteractionResult.SUCCESS;
                 }
                 else if(cluster.addFuel(itemInHand,true).getCount()>0)
                 {
                     int amountToShrink = cluster.addFuel(itemInHand,false).getCount();
                     itemInHand.shrink(amountToShrink);
-                    MessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.fuel_add");
+                    MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.fuel_add");
                     return InteractionResult.SUCCESS;
                 }
                 else if(cluster.addModifier(itemInHand, true).getCount()>0)
                 {
                     int amountToShrink = cluster.addModifier(itemInHand, false).getCount();
                     itemInHand.shrink(amountToShrink);
-                    MessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.modifier_add");
+                    MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.modifier_add");
                     return InteractionResult.SUCCESS;
                 }
             }
@@ -298,8 +298,8 @@ public class EffectCrystalClusterBlock extends Block implements SimpleWaterlogge
             if (p_56214_.getBlock() instanceof BasePedestalBlock) {
                 if (!p_56212_.isClientSide && !p_56215_.isCreative()) {
                     ItemStack itemstack = new ItemStack(this);
-                    int getColor = ColorReference.getColorFromStateInt(p_56214_);
-                    ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                    int getColor = MowLibColorReference.getColorFromStateInt(p_56214_);
+                    ItemStack newStack = MowLibColorReference.addColorToItemStack(itemstack,getColor);
                     newStack.setCount(1);
                     ItemEntity itementity = new ItemEntity(p_56212_, (double)p_56213_.getX() + 0.5D, (double)p_56213_.getY() + 0.5D, (double)p_56213_.getZ() + 0.5D, newStack);
                     itementity.setDefaultPickUpDelay();

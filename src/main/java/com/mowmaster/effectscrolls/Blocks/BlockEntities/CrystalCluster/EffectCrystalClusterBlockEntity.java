@@ -6,8 +6,8 @@ import com.mowmaster.effectscrolls.Recipes.CrystalClusterFuelRecipe;
 import com.mowmaster.effectscrolls.Recipes.CrystalClusterModifiers;
 import com.mowmaster.effectscrolls.Registry.DeferredBlockEntityTypes;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterItems;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
-import com.mowmaster.mowlib.MowLibUtils.ContainerUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibContainerUtils;
 import com.mowmaster.mowlib.Networking.MowLibPacketHandler;
 import com.mowmaster.mowlib.Networking.MowLibPacketParticles;
 import com.mowmaster.mowlib.Recipes.BaseBlockEntityFilter;
@@ -50,7 +50,7 @@ import java.util.Map;
 import java.util.Random;
 
 import static com.mowmaster.effectscrolls.Blocks.BlockEntities.CrystalCluster.EffectCrystalClusterBlock.FACING;
-import static com.mowmaster.mowlib.MowLibUtils.ColorReference.getTrueColorFromInt;
+import static com.mowmaster.mowlib.MowLibUtils.MowLibColorReference.getTrueColorFromInt;
 
 /*
 * Alright, so how this will work,
@@ -196,8 +196,8 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
                     h.insertItem(nextAvailableSlot,crystalToAdd,simulate);
 
                     int color = getCurrentColor();
-                    int newColor = ColorReference.getColorFromItemStackInt(crystalToAdd);
-                    int mixedColor = (color != newColor)?((color==0)?(newColor):(ColorReference.mixColorsInt(color,newColor))):(color);
+                    int newColor = MowLibColorReference.getColorFromItemStackInt(crystalToAdd);
+                    int mixedColor = (color != newColor)?((color==0)?(newColor):(MowLibColorReference.mixColorsInt(color,newColor))):(color);
                     this.currentColor = mixedColor;
                     this.allColors.add(mixedColor);
                     //set current fuel to 0 to recalc the effect
@@ -235,7 +235,7 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
 
             int color = getCurrentColor();
             int newColor = allColors.get(lastSlot-1);
-            int mixedColor = (color != newColor)?((color==0)?(newColor):(ColorReference.mixColorsInt(color,newColor))):(color);
+            int mixedColor = (color != newColor)?((color==0)?(newColor):(MowLibColorReference.mixColorsInt(color,newColor))):(color);
             this.currentColor = mixedColor;
             this.allColors.remove(lastSlot);
             //set current fuel to 0 to recalc the effect
@@ -262,7 +262,7 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
      */
     @Nullable
     protected CrystalClusterFuelRecipe getRecipe(Level level, ItemStack stackIn) {
-        Container container = ContainerUtils.getContainer(1);
+        Container container = MowLibContainerUtils.getContainer(1);
         container.setItem(-1,stackIn);
         List<CrystalClusterFuelRecipe> recipes = level.getRecipeManager().getRecipesFor(CrystalClusterFuelRecipe.Type.INSTANCE,container,level);
         return recipes.size() > 0 ? level.getRecipeManager().getRecipesFor(CrystalClusterFuelRecipe.Type.INSTANCE,container,level).get(0) : null;
@@ -399,7 +399,7 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
 
     @Nullable
     protected CrystalClusterModifiers getRecipeModifier(Level level, ItemStack stackIn) {
-        Container container = ContainerUtils.getContainer(1);
+        Container container = MowLibContainerUtils.getContainer(1);
         container.setItem(-1,stackIn);
         List<CrystalClusterModifiers> recipes = level.getRecipeManager().getRecipesFor(CrystalClusterModifiers.Type.INSTANCE,container,level);
         return recipes.size() > 0 ? level.getRecipeManager().getRecipesFor(CrystalClusterModifiers.Type.INSTANCE,container,level).get(0) : null;
@@ -595,7 +595,7 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
 
     @Nullable
     protected MobEffectColorRecipe getRecipeMobEffectColor(Level level, ItemStack stackIn) {
-        Container container = ContainerUtils.getContainer(1);
+        Container container = MowLibContainerUtils.getContainer(1);
         container.setItem(-1,stackIn);
         List<MobEffectColorRecipe> recipes = level.getRecipeManager().getRecipesFor(MobEffectColorRecipe.Type.INSTANCE,container,level);
         return recipes.size() > 0 ? recipes.get(0) : null;
@@ -607,7 +607,7 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
 
     @Nullable
     protected MobEffectColorRecipeCorrupted getRecipeMobEffectColorCorrupted(Level level, ItemStack stackIn) {
-        Container container = ContainerUtils.getContainer(1);
+        Container container = MowLibContainerUtils.getContainer(1);
         container.setItem(-1,stackIn);
         List<MobEffectColorRecipeCorrupted> recipes = level.getRecipeManager().getRecipesFor(MobEffectColorRecipeCorrupted.Type.INSTANCE,container,level);
         return recipes.size() > 0 ? level.getRecipeManager().getRecipesFor(MobEffectColorRecipeCorrupted.Type.INSTANCE,container,level).get(0) : null;
@@ -631,13 +631,13 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
         boolean corruption = hasCorruption();
         if(corruption)
         {
-            ItemStack stack = ColorReference.addColorToItemStack(new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get()),getCurrentColor());
+            ItemStack stack = MowLibColorReference.addColorToItemStack(new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get()),getCurrentColor());
             ResourceLocation location = new ResourceLocation(getProcessResultMobEffectColorRecipeCorrupted(getRecipeMobEffectColorCorrupted(getLevel(),stack)));
             if(Registry.MOB_EFFECT.getOptional(location).isPresent())return Registry.MOB_EFFECT.getOptional(location).get();
         }
         else if (!corruption)
         {
-            ItemStack stack = ColorReference.addColorToItemStack(new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get()),getCurrentColor());
+            ItemStack stack = MowLibColorReference.addColorToItemStack(new ItemStack(DeferredRegisterItems.COLORED_CRYSTAL.get()),getCurrentColor());
             ResourceLocation location = new ResourceLocation(getProcessResultMobEffectColorRecipe(getRecipeMobEffectColor(getLevel(),stack)));
             if(Registry.MOB_EFFECT.getOptional(location).isPresent())return Registry.MOB_EFFECT.getOptional(location).get();
         }
@@ -765,7 +765,7 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
 
     @Nullable
     protected BaseBlockEntityFilter getRecipeFilterBlock(Level level, ItemStack stackIn) {
-        Container container = ContainerUtils.getContainer(1);
+        Container container = MowLibContainerUtils.getContainer(1);
         container.setItem(-1,stackIn);
         List<BaseBlockEntityFilter> recipes = getLevel().getRecipeManager().getRecipesFor(BaseBlockEntityFilter.Type.INSTANCE,container,getLevel());
         return getLevel() != null ? (recipes.size() > 0)?(recipes.stream().findFirst().get()):(null) : null;

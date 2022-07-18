@@ -4,7 +4,7 @@ import com.mowmaster.effectscrolls.Blocks.BaseColoredCrystalBlock;
 import com.mowmaster.effectscrolls.EffectScrollConfig.EffectScrollsConfig;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterBlocks;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterItems;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -62,7 +62,7 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
     public BaseCrystalClusterBlock(int p_152015_, int p_152016_, BlockBehaviour.Properties p_152726_) {
 
         super(p_152726_);
-        this.registerDefaultState(ColorReference.addColorToBlockState(this.defaultBlockState(),ColorReference.DEFAULTCOLOR).setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.UP));
+        this.registerDefaultState(MowLibColorReference.addColorToBlockState(this.defaultBlockState(),MowLibColorReference.DEFAULTCOLOR).setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.UP));
         this.upAabb = Block.box((double)p_152016_, 0.0D, (double)p_152016_, (double)(16 - p_152016_), (double)p_152015_, (double)(16 - p_152016_));
         this.downAabb = Block.box((double)p_152016_, (double)(16 - p_152015_), (double)p_152016_, (double)(16 - p_152016_), 16.0D, (double)(16 - p_152016_));
         this.northAabb = Block.box((double)p_152016_, (double)p_152016_, (double)(16 - p_152015_), (double)(16 - p_152016_), (double)(16 - p_152016_), 16.0D);
@@ -111,12 +111,12 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
         BlockPos blockpos = p_152019_.getClickedPos();
         Direction direction = p_152019_.getClickedFace();
         BlockState blockstate = p_152019_.getLevel().getBlockState(p_152019_.getClickedPos());
-        int getColor = ColorReference.getColorFromStateInt(blockstate);
+        int getColor = MowLibColorReference.getColorFromStateInt(blockstate);
         return blockstate.is(this) && blockstate.getValue(FACING) == direction
                 ?
-                ColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(FACING, direction.getOpposite()).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER))
+                MowLibColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(FACING, direction.getOpposite()).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER))
                 :
-                ColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(FACING, direction).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER));
+                MowLibColorReference.addColorToBlockState(this.defaultBlockState(),getColor).setValue(FACING, direction).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER));
     }
 
     public BlockState rotate(BlockState p_152033_, Rotation p_152034_) {
@@ -144,7 +144,7 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
         if (p_152731_.nextInt(25) == 0) {
             Direction direction = p_152728_.getValue(FACING);
             BlockState blockstate = p_152729_.getBlockState(p_152730_);
-            int getColor = ColorReference.getColorFromStateInt(blockstate);
+            int getColor = MowLibColorReference.getColorFromStateInt(blockstate);
             Block block = null;
         }
     }
@@ -201,8 +201,8 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
             if(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH,p_60538_.getParameter(LootContextParams.TOOL))>0)
             {
                 ItemStack itemstack = new ItemStack(this);
-                int getColor = ColorReference.getColorFromStateInt(p_60537_);
-                ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                int getColor = MowLibColorReference.getColorFromStateInt(p_60537_);
+                ItemStack newStack = MowLibColorReference.addColorToItemStack(itemstack,getColor);
                 newStack.setCount(1);
                 stacks.add(newStack);
                 return stacks;
@@ -215,8 +215,8 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
                 if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
                 if(p_60537_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
 
-                int getColor = ColorReference.getColorFromStateInt(p_60537_);
-                ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                int getColor = MowLibColorReference.getColorFromStateInt(p_60537_);
+                ItemStack newStack = MowLibColorReference.addColorToItemStack(itemstack,getColor);
                 stacks.add(newStack);
                 return stacks;
             }
@@ -237,8 +237,8 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
                 if(p_60515_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
                 if(p_60515_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
 
-                int getColor = ColorReference.getColorFromStateInt(p_60515_);
-                ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                int getColor = MowLibColorReference.getColorFromStateInt(p_60515_);
+                ItemStack newStack = MowLibColorReference.addColorToItemStack(itemstack,getColor);
                 ItemEntity itementity = new ItemEntity(p_60516_, (double)p_60517_.getX() + 0.5D, (double)p_60517_.getY() + 0.5D, (double)p_60517_.getZ() + 0.5D, newStack);
                 itementity.setDefaultPickUpDelay();
                 p_60516_.addFreshEntity(itementity);
@@ -265,8 +265,8 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
                 if(state.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
                 if(state.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
 
-                int getColor = ColorReference.getColorFromStateInt(state);
-                ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                int getColor = MowLibColorReference.getColorFromStateInt(state);
+                ItemStack newStack = MowLibColorReference.addColorToItemStack(itemstack,getColor);
                 ItemEntity itementity = new ItemEntity(level, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, newStack);
                 itementity.setDefaultPickUpDelay();
                 level.setBlock(pos,Blocks.AIR.defaultBlockState(),3);
@@ -287,8 +287,8 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
                 if(EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH,p_56215_)>0)
                 {
                     ItemStack itemstack = new ItemStack(this);
-                    int getColor = ColorReference.getColorFromStateInt(p_56214_);
-                    ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                    int getColor = MowLibColorReference.getColorFromStateInt(p_56214_);
+                    ItemStack newStack = MowLibColorReference.addColorToItemStack(itemstack,getColor);
                     newStack.setCount(1);
                     ItemEntity itementity = new ItemEntity(p_56212_, (double)p_56213_.getX() + 0.5D, (double)p_56213_.getY() + 0.5D, (double)p_56213_.getZ() + 0.5D, newStack);
                     itementity.setDefaultPickUpDelay();
@@ -302,8 +302,8 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
                     if(p_56214_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get()))itemstack.setCount(rand.nextInt(1, 3 + 1));
                     if(p_56214_.getBlock().equals(DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get()))itemstack.setCount(rand.nextInt(2, 5 + 1));
 
-                    int getColor = ColorReference.getColorFromStateInt(p_56214_);
-                    ItemStack newStack = ColorReference.addColorToItemStack(itemstack,getColor);
+                    int getColor = MowLibColorReference.getColorFromStateInt(p_56214_);
+                    ItemStack newStack = MowLibColorReference.addColorToItemStack(itemstack,getColor);
                     ItemEntity itementity = new ItemEntity(p_56212_, (double)p_56213_.getX() + 0.5D, (double)p_56213_.getY() + 0.5D, (double)p_56213_.getZ() + 0.5D, newStack);
                     itementity.setDefaultPickUpDelay();
                     p_56212_.addFreshEntity(itementity);
@@ -328,7 +328,7 @@ public class BaseCrystalClusterBlock extends BaseColoredCrystalBlock implements 
         if(state.getBlock() instanceof BaseColoredCrystalBlock)
         {
 
-            switch(ColorReference.getColorFromStateInt(state))
+            switch(MowLibColorReference.getColorFromStateInt(state))
             {
                 case 2763306: return "death000";
                         case 85: return "death001";

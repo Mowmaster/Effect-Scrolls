@@ -6,7 +6,7 @@ import com.mowmaster.effectscrolls.Blocks.BlockEntities.DustJar.DustJarBlockItem
 import com.mowmaster.effectscrolls.Blocks.BlockEntities.ScrollCrafter.ScrollCrafterBlockEntityRender_T15;
 import com.mowmaster.effectscrolls.EffectScrollsUtils.References;
 import com.mowmaster.effectscrolls.Items.ScrollBase;
-import com.mowmaster.mowlib.MowLibUtils.ColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -30,27 +30,27 @@ public class EffectScrollsClientRegistry
     public static void registerItemColor(RegisterColorHandlersEvent.Item event) {
 
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterItems.COLORED_CRYSTAL.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterItems.COLORED_CRYSTAL.get());
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterItems.COLORED_CRYSTAL_DUST.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterItems.COLORED_CRYSTAL_DUST.get());
 
 
 
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_NODE.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_NODE.get());
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get());
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get());
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get());
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get());
 
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_BLOCK.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_BLOCK.get());
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_BLOCK_COMPACT.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_BLOCK_COMPACT.get());
 
         event.getItemColors().register((stack, color) ->
         {
@@ -81,7 +81,7 @@ public class EffectScrollsClientRegistry
         event.getItemColors().register((stack, color) ->
         {
             if (color == 1) {
-                return ColorReference.getColorFromItemStackInt(stack);
+                return MowLibColorReference.getColorFromItemStackInt(stack);
             }
             else if (color == 2) {
                 return DustJarBlockItem.getFillColor(stack);
@@ -89,9 +89,9 @@ public class EffectScrollsClientRegistry
             else {return -1;}
         }, DeferredRegisterTileBlocks.BLOCK_DUST_JAR.get());
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterTileBlocks.BLOCK_CRAFTER_SCROLL_T15.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterTileBlocks.BLOCK_CRAFTER_SCROLL_T15.get());
         event.getItemColors().register((stack, color) ->
-        {if (color == 1) {return ColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.BASE_WORKSTATION_BLOCK.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromItemStackInt(stack);} else {return -1;}}, DeferredRegisterBlocks.BASE_WORKSTATION_BLOCK.get());
 
     }
 
@@ -99,24 +99,24 @@ public class EffectScrollsClientRegistry
     public static void registerBlockColor(RegisterColorHandlersEvent.Block event) {
 
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_NODE.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_NODE.get());
 
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_FULL.get());
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_LARGE.get());
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_MEDIUM.get());
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_CLUSTER_SMALL.get());
 
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_BLOCK.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_BLOCK.get());
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_BLOCK_COMPACT.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.CRYSTAL_BLOCK_COMPACT.get());
 
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.BASE_WORKSTATION_BLOCK.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterBlocks.BASE_WORKSTATION_BLOCK.get());
 
         /*
          *
@@ -125,10 +125,10 @@ public class EffectScrollsClientRegistry
          */
 
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterTileBlocks.BLOCK_DUST_JAR.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterTileBlocks.BLOCK_DUST_JAR.get());
 
         event.getBlockColors().register((blockstate, blockReader, blockPos, color) ->
-        {if (color == 1) {return ColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterTileBlocks.BLOCK_CRAFTER_SCROLL_T15.get());
+        {if (color == 1) {return MowLibColorReference.getColorFromStateInt(blockstate);} else {return -1;}}, DeferredRegisterTileBlocks.BLOCK_CRAFTER_SCROLL_T15.get());
 
     }
 
