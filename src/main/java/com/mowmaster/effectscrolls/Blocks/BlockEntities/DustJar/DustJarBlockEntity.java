@@ -1,18 +1,26 @@
 package com.mowmaster.effectscrolls.Blocks.BlockEntities.DustJar;
 
 import com.mowmaster.effectscrolls.Registry.DeferredBlockEntityTypes;
+import com.mowmaster.mowlib.Capabilities.Dust.CapabilityDust;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Capabilities.Dust.DustTank;
 import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
+import com.mowmaster.mowlib.Capabilities.Experience.CapabilityExperience;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static com.mowmaster.mowlib.MowLibUtils.MowLibReferences.MODID;
@@ -159,6 +167,15 @@ public class DustJarBlockEntity extends BlockEntity {
                 */
             }
         };
+    }
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if ((cap == CapabilityDust.DUST_HANDLER)) {
+            return dustHandler.cast();
+        }
+        return super.getCapability(cap, side);
     }
 
 
