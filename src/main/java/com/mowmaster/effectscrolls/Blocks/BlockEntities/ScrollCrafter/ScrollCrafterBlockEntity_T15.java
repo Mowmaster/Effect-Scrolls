@@ -7,6 +7,7 @@ import com.mowmaster.effectscrolls.Registry.DeferredBlockEntityTypes;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterItems;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterTileBlocks;
 import com.mowmaster.mowlib.BlockEntities.BaseBuiltMachineBlockEntity;
+import com.mowmaster.mowlib.Capabilities.Dust.CapabilityDust;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
 import com.mowmaster.mowlib.Items.EffectItemBase;
@@ -15,6 +16,7 @@ import com.mowmaster.mowlib.MowLibUtils.MowLibContainerUtils;
 import com.mowmaster.mowlib.MowLibUtils.MowLibEffectUtils;
 import com.mowmaster.mowlib.MowLibUtils.MowLibItemUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.effect.MobEffect;
@@ -24,6 +26,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
@@ -247,6 +250,15 @@ public class ScrollCrafterBlockEntity_T15 extends BaseBuiltMachineBlockEntity {
     {
         IDustHandler h = dustHandler.orElse(null);
         return h.fill(dustMagicIn,action);
+    }
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if ((cap == CapabilityDust.DUST_HANDLER)) {
+            return dustHandler.cast();
+        }
+        return super.getCapability(cap, side);
     }
 
     /*============================================================================
