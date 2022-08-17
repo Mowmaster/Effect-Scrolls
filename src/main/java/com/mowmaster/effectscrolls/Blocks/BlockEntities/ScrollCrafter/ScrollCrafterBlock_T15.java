@@ -9,6 +9,7 @@ import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
 import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
 import com.mowmaster.mowlib.MowLibUtils.MowLibMessageUtils;
+import com.mowmaster.mowlib.MowLibUtils.MowLibReferences;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -316,7 +317,7 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
                         if(table.hasDust())
                         {
                             DustMagic magic = table.getStoredDust();
-                            MowLibMessageUtils.messagePlayerChatWithAppend(References.MODID, p_60506_,ChatFormatting.WHITE,References.MODID + ".dust_in_jar", Arrays.asList(MowLibColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
+                            MowLibMessageUtils.messagePopupWithAppend(MowLibReferences.MODID, p_60506_,ChatFormatting.WHITE,MowLibReferences.MODID + ".dust_in_jar", Arrays.asList(MowLibReferences.MODID + "." +MowLibColorReference.getColorName(magic.getDustColor()),": ",""+magic.getDustAmount()+""));
                         }
                         if(!table.getScrollCrafted().isEmpty())MowLibMessageUtils.messagePlayerChat(p_60506_,ChatFormatting.RED,table.getScrollCrafted().getDisplayName().getString());
                     }

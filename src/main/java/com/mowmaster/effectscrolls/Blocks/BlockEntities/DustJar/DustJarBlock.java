@@ -6,6 +6,7 @@ import com.mowmaster.effectscrolls.Registry.DeferredRegisterTileBlocks;
 import com.mowmaster.mowlib.Blocks.BaseBlocks.BaseColoredBlock;
 import com.mowmaster.mowlib.Capabilities.Dust.DustMagic;
 import com.mowmaster.mowlib.Capabilities.Dust.IDustHandler;
+import com.mowmaster.mowlib.Items.BaseDustStorageItem;
 import com.mowmaster.mowlib.Items.ColorApplicator;
 import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
 import com.mowmaster.mowlib.MowLibUtils.MowLibMessageUtils;
@@ -312,7 +313,7 @@ public class DustJarBlock extends BaseColoredBlock implements EntityBlock {
                     p_60504_.setBlock(p_60505_,newState,3);
                     return InteractionResult.SUCCESS;
                 }
-                else if(itemInHand.getItem() instanceof ColoredCrystalDustBase)
+                else if(itemInHand.getItem() instanceof BaseDustStorageItem)
                 {
                     //System.out.println("THIS IS DUST");
                     if(jar.hasDust())
