@@ -73,6 +73,8 @@ public class DustJarBlockItem extends BaseDustStorageBlockItem {
     public void appendHoverText(ItemStack p_40572_, @Nullable Level p_40573_, List<Component> p_40574_, TooltipFlag p_40575_) {
         super.appendHoverText(p_40572_, p_40573_, p_40574_, p_40575_);
 
+        p_40574_.add(Component.translatable(MODID + ".colortext").withStyle(ChatFormatting.GOLD).append(Component.translatable(MowLibReferences.MODID + "." + MowLibColorReference.getColorName(MowLibColorReference.getColorFromItemStackInt(p_40572_))).withStyle(ChatFormatting.WHITE)));
+
         DustMagic magic = DustMagic.getDustMagicInItemStack(p_40572_);
         if(magic.getDustColor() != -1)
         {

@@ -13,11 +13,13 @@ import com.mowmaster.mowlib.MowLibUtils.MowLibReferences;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -39,8 +41,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemHandlerHelper;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static com.mowmaster.mowlib.MowLibUtils.MowLibReferences.MODID;
 
@@ -356,5 +360,11 @@ public class ScrollCrafterBlock_T15 extends BaseBuiltMachineBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         return level.isClientSide ? null
                 : (level0, pos, state0, blockEntity) -> ((ScrollCrafterBlockEntity_T15) blockEntity).tick();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack p_49816_, @Nullable BlockGetter p_49817_, List<Component> p_49818_, TooltipFlag p_49819_) {
+        super.appendHoverText(p_49816_, p_49817_, p_49818_, p_49819_);
+        p_49818_.add(Component.translatable(MODID + ".colortext").withStyle(ChatFormatting.GOLD).append(Component.translatable(MowLibReferences.MODID + "." + MowLibColorReference.getColorName(MowLibColorReference.getColorFromItemStackInt(p_49816_))).withStyle(ChatFormatting.WHITE)));
     }
 }

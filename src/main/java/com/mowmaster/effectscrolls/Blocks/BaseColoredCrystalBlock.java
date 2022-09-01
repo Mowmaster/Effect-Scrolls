@@ -4,9 +4,11 @@ package com.mowmaster.effectscrolls.Blocks;
 import com.mowmaster.mowlib.Blocks.BaseBlocks.BaseColoredBlock;
 import com.mowmaster.mowlib.Items.ColorApplicator;
 import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.MowLibUtils.MowLibReferences;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -29,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+import static com.mowmaster.effectscrolls.EffectScrollsUtils.References.MODID;
 
 public class BaseColoredCrystalBlock extends BaseColoredBlock
 {

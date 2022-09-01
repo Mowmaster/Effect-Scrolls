@@ -18,12 +18,12 @@ public class DeferredRegisterItems
             DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
     public static final RegistryObject<Item> COLORED_CRYSTAL = ITEMS.register("item_crystal",
-            () -> new ColoredCrystalBase(new Item.Properties().stacksTo(64).tab(TAB_EFFECTSCROLLS)));
+            () -> new ColoredCrystalBase(new Item.Properties().stacksTo(64).tab(TAB_EFFECTSCROLLS),true));
     public static final RegistryObject<Item> COLORED_CRYSTAL_DUST = ITEMS.register("item_crystal_dust",
             () -> new ColoredCrystalDustBase(new Item.Properties().stacksTo(64).tab(TAB_EFFECTSCROLLS)));
 
     public static final RegistryObject<Item> COLORED_NODE_MAKER = ITEMS.register("item_nodemaker",
-            () -> new ColoredCrystalBase(new Item.Properties().stacksTo(64).tab(TAB_EFFECTSCROLLS)));
+            () -> new ColoredCrystalBase(new Item.Properties().stacksTo(64).tab(TAB_EFFECTSCROLLS),false));
 
     public static final RegistryObject<Item> EFFECT_SCROLL = ITEMS.register("scroll_effect",
             () -> new ScrollBase(new Item.Properties().tab(TAB_EFFECTSCROLLS)));
