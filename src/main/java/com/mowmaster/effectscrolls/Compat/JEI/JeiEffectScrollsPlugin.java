@@ -3,6 +3,7 @@ package com.mowmaster.effectscrolls.Compat.JEI;
 import com.mowmaster.effectscrolls.Compat.JEI.recipes.CrystalClusterFuelCategory;
 import com.mowmaster.effectscrolls.Compat.JEI.recipes.CrystalClusterModifierCategory;
 import com.mowmaster.effectscrolls.Compat.JEI.recipes.CrystalNodeRecipeCategory;
+import com.mowmaster.effectscrolls.Compat.JEI.recipes.ScrollCraftingRecipeCategory;
 import com.mowmaster.effectscrolls.EffectScrollsUtils.References;
 import com.mowmaster.effectscrolls.Recipes.CrystalClusterFuelRecipe;
 import com.mowmaster.effectscrolls.Recipes.CrystalClusterModifiers;
@@ -52,6 +53,7 @@ public class JeiEffectScrollsPlugin implements IModPlugin
         registration.addRecipeCategories(new CrystalNodeRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CrystalClusterModifierCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CrystalClusterFuelCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ScrollCraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -67,6 +69,9 @@ public class JeiEffectScrollsPlugin implements IModPlugin
 
         List<CrystalClusterFuelRecipe> crystalClusterFuel = recipeManager.getAllRecipesFor(CrystalClusterFuelRecipe.Type.INSTANCE);
         registration.addRecipes(JEIEffectScrollsRecipeTypes.CRYSTAL_CLUSTER_FUEL, crystalClusterFuel);
+
+        List<CrystalClusterModifiers> scrollCrafting = recipeManager.getAllRecipesFor(CrystalClusterModifiers.Type.INSTANCE);
+        registration.addRecipes(JEIEffectScrollsRecipeTypes.SCROLL_CRAFTING_RECIPES, scrollCrafting);
 
 
         //this.registerIngredientInfo(registration, DeferredRegisterItems.COLOR_APPLICATOR.get());
@@ -92,6 +97,9 @@ public class JeiEffectScrollsPlugin implements IModPlugin
 
         registration.addRecipeCatalyst(new ItemStack(DeferredRegisterTileBlocks.BLOCK_CRYSTAL_CLUSTER.get()),
                 JEIEffectScrollsRecipeTypes.CRYSTAL_CLUSTER_FUEL);
+
+        registration.addRecipeCatalyst(new ItemStack(DeferredRegisterItems.EFFECT_SCROLL.get()),
+                JEIEffectScrollsRecipeTypes.SCROLL_CRAFTING_RECIPES);
 
     }
 

@@ -19,4 +19,7 @@ public class JEIEffectScrollsRecipeTypes
     public static final RecipeType<CrystalClusterModifiers> CRYSTAL_CLUSTER_MODIFIERS =
             RecipeType.create(MODID, "crystal_cluster_modifiers", CrystalClusterModifiers.class);
 
+    public static final RecipeType<CrystalClusterModifiers> SCROLL_CRAFTING_RECIPES =
+            RecipeType.create(MODID, "scroll_crafting_recipes", CrystalClusterModifiers.class);
+
 }
