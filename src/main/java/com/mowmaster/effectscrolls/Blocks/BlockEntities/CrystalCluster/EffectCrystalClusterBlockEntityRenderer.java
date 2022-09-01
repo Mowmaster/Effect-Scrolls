@@ -4,7 +4,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import com.mowmaster.effectscrolls.Registry.DeferredRegisterBlocks;
+import com.mowmaster.mowlib.Blocks.BaseBlocks.BaseColoredBlock;
 import com.mowmaster.mowlib.MowLibUtils.MowLibColorReference;
+import com.mowmaster.mowlib.api.IColorableBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -42,51 +44,59 @@ public class EffectCrystalClusterBlockEntityRenderer implements BlockEntityRende
 
             if(facing== Direction.UP)
             {
-                renderBase(Block.byItem(baseBlock.getItem()).defaultBlockState(),p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
+                renderBase(level,pos,baseBlock,p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
                 renderCrystal(level,pos,clusterColor,getClusterState,p_112309_,p_112310_,0.0f, 0.125f, 0.0f, 0.0f,p_112311_,p_112312_);
             }
             if(facing== Direction.DOWN) {
                 p_112309_.mulPose(Vector3f.ZP.rotationDegrees(180));
                 p_112309_.translate(0, -1, 0);
                 p_112309_.translate(-1, 0, 0);
-                renderBase(Block.byItem(baseBlock.getItem()).defaultBlockState(),p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
+                renderBase(level,pos,baseBlock,p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
                 renderCrystal(level,pos, clusterColor,getClusterState,p_112309_,p_112310_,0.0f, 0.125f, 0.0f, 0.0f,p_112311_,p_112312_);
             }
             if(facing== Direction.NORTH) {
                 p_112309_.mulPose(Vector3f.XP.rotationDegrees(270));
                 p_112309_.translate(0, -1, 0);
-                renderBase(Block.byItem(baseBlock.getItem()).defaultBlockState(),p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
+                renderBase(level,pos,baseBlock,p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
                 renderCrystal(level,pos,clusterColor,getClusterState,p_112309_,p_112310_,0.0f, 0.125f, 0.0f, 0.0f,p_112311_,p_112312_);
             }
             if(facing== Direction.EAST) {
                 p_112309_.mulPose(Vector3f.ZP.rotationDegrees(270));
                 p_112309_.translate(-1, 0, 0);
-                renderBase(Block.byItem(baseBlock.getItem()).defaultBlockState(),p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
+                renderBase(level,pos,baseBlock,p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
                 renderCrystal(level, pos,clusterColor,getClusterState,p_112309_,p_112310_,0.0f, 0.125f, 0.0f, 0.0f,p_112311_,p_112312_);
             }
             if(facing== Direction.SOUTH) {
                 p_112309_.mulPose(Vector3f.XP.rotationDegrees(90));
                 p_112309_.translate(0, 0, -1);
-                renderBase(Block.byItem(baseBlock.getItem()).defaultBlockState(),p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
+                renderBase(level,pos,baseBlock,p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
                 renderCrystal(level,pos,clusterColor,getClusterState,p_112309_,p_112310_,0.0f, 0.125f, 0.0f, 0.0f,p_112311_,p_112312_);
             }
             if(facing== Direction.WEST) {
                 p_112309_.mulPose(Vector3f.ZP.rotationDegrees(90));
                 p_112309_.translate(0, -1, 0);
-                renderBase(Block.byItem(baseBlock.getItem()).defaultBlockState(),p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
+                renderBase(level,pos,baseBlock,p_112309_,p_112310_,0.09375f, 0.0f, 0.09375f, 0.0f,p_112311_,p_112312_);
                 renderCrystal(level,pos,clusterColor,getClusterState,p_112309_,p_112310_,0.0f, 0.125f, 0.0f, 0.0f,p_112311_,p_112312_);
             }
         }
     }
 
-    public static void renderBase(BlockState stateBaseBlock, PoseStack p_112309_, MultiBufferSource p_112310_, float x, float y, float z, float angle, int p_112311_, int p_112312_) {
+    public static void renderBase(Level level, BlockPos pos,ItemStack baseBlockStack, PoseStack p_112309_, MultiBufferSource p_112310_, float x, float y, float z, float angle, int p_112311_, int p_112312_) {
         p_112309_.pushPose();
         p_112309_.translate(x, y, z);
         p_112309_.scale(0.8125f, 0.125f, 0.8125f);
         p_112309_.mulPose(Vector3f.YP.rotationDegrees(angle));
         BlockRenderDispatcher renderBaseBlock = Minecraft.getInstance().getBlockRenderer();
+        BlockState getBlockBaseState = Block.byItem(baseBlockStack.getItem()).defaultBlockState();
+        if(getBlockBaseState.getBlock() instanceof BaseColoredBlock)
+        {
+            //MowLibColorReference.getColorFromItemStackInt(baseBlockStack)
+            int colorValue = MowLibColorReference.getColorFromItemStackInt(baseBlockStack);
+            VertexConsumer color = p_112310_.getBuffer(RenderType.translucent()).color(colorValue);
+            renderBaseBlock.renderBatched(MowLibColorReference.addColorToBlockState(getBlockBaseState,colorValue),pos,level,p_112309_,color,true, RandomSource.create());
+        }
+        else { renderBaseBlock.renderSingleBlock(getBlockBaseState,p_112309_,p_112310_,p_112311_,p_112312_); }
         //BakedModel baked = renderBaseBlock.getBlockModel(Blocks.STONE.defaultBlockState());
-        renderBaseBlock.renderSingleBlock(stateBaseBlock,p_112309_,p_112310_,p_112311_,p_112312_);
         p_112309_.popPose();
     }
 
