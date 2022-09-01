@@ -695,15 +695,19 @@ public class EffectCrystalClusterBlockEntity extends BlockEntity
     }
 
     //returns Block Swapped out with new Base Block
-    public ItemStack addBaseBlock(ItemStack stack)
+    public ItemStack addBaseBlock(ItemStack stack, boolean simulate)
     {
         ItemStack returnStack = ItemStack.EMPTY;
-        ItemStack baseStack = stack.copy();
-        baseStack.setCount(1);
         IItemHandler h = handlerCrystalCluster.orElse(null);
-        if(hasBaseBlock())returnStack = h.extractItem(4,1,false);
-        else returnStack = ItemStack.EMPTY;
-        h.insertItem(4,baseStack,false);
+        ItemStack currentStack = h.extractItem(4,1,true);
+        if(!ItemHandlerHelper.canItemStacksStack(stack,currentStack))
+        {
+            ItemStack baseStack = stack.copy();
+            baseStack.setCount(1);
+            if(hasBaseBlock())returnStack = h.extractItem(4,1,simulate);
+            else returnStack = ItemStack.EMPTY;
+            h.insertItem(4,baseStack,simulate);
+        }
 
         return returnStack;
     }

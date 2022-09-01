@@ -164,10 +164,8 @@ public class EffectCrystalClusterBlock extends Block implements SimpleWaterlogge
         if(!p_60504_.isClientSide())
         {
             BlockEntity blockEntity = p_60504_.getBlockEntity(p_60505_);
-            if(blockEntity instanceof EffectCrystalClusterBlockEntity)
+            if(blockEntity instanceof EffectCrystalClusterBlockEntity cluster)
             {
-                EffectCrystalClusterBlockEntity cluster = ((EffectCrystalClusterBlockEntity)blockEntity);
-
                 ItemStack itemInHand = p_60506_.getMainHandItem();
                 ItemStack itemInOffHand = p_60506_.getOffhandItem();
 
@@ -207,15 +205,6 @@ public class EffectCrystalClusterBlock extends Block implements SimpleWaterlogge
                     }
 
                 }
-                else if(itemInHand.getItem() instanceof BlockItem)
-                {
-                    ItemHandlerHelper.giveItemToPlayer(p_60506_,cluster.addBaseBlock(itemInHand));
-                    itemInHand.shrink(1);
-                    if(cluster.getEntityForFilter(cluster.getBaseBlock()) == "")MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed");
-                    else if(cluster.isFilteredEntityBaby(cluster.getBaseBlock()))MowLibMessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type", MODID + ".crystal_cluster.base_baby", cluster.getEntityForFilter(cluster.getBaseBlock())));
-                    else MowLibMessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type",cluster.getEntityForFilter(cluster.getBaseBlock())));
-                    return InteractionResult.SUCCESS;
-                }
                 else if(cluster.addFuel(itemInHand,true).getCount()>0)
                 {
                     int amountToShrink = cluster.addFuel(itemInHand,false).getCount();
@@ -229,6 +218,33 @@ public class EffectCrystalClusterBlock extends Block implements SimpleWaterlogge
                     itemInHand.shrink(amountToShrink);
                     MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.modifier_add");
                     return InteractionResult.SUCCESS;
+                }
+                else if(itemInHand.getItem() instanceof BlockItem)
+                {
+                    ItemStack removeBaseBlockSimulate = cluster.addBaseBlock(itemInHand, true);
+                    if(!cluster.hasBaseBlock())
+                    {
+                        cluster.addBaseBlock(itemInHand, false);
+                        itemInHand.shrink(1);
+                        if(cluster.getEntityForFilter(cluster.getBaseBlock()) == "")MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed");
+                        else if(cluster.isFilteredEntityBaby(cluster.getBaseBlock()))MowLibMessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type", MODID + ".crystal_cluster.base_baby", cluster.getEntityForFilter(cluster.getBaseBlock())));
+                        else MowLibMessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type",cluster.getEntityForFilter(cluster.getBaseBlock())));
+                        return InteractionResult.SUCCESS;
+                    }
+                    else if(!removeBaseBlockSimulate.isEmpty())
+                    {
+                        ItemStack removeBaseBlock = cluster.addBaseBlock(itemInHand, false);
+                        itemInHand.shrink(1);
+                        ItemHandlerHelper.giveItemToPlayer(p_60506_,removeBaseBlock);
+                        if(cluster.getEntityForFilter(cluster.getBaseBlock()) == "")MowLibMessageUtils.messagePopup(p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed");
+                        else if(cluster.isFilteredEntityBaby(cluster.getBaseBlock()))MowLibMessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type", MODID + ".crystal_cluster.base_baby", cluster.getEntityForFilter(cluster.getBaseBlock())));
+                        else MowLibMessageUtils.messagePopupWithAppend(MODID,p_60506_,ChatFormatting.WHITE,MODID + ".crystal_cluster.base_changed",Arrays.asList(MODID + ".crystal_cluster.base_type",cluster.getEntityForFilter(cluster.getBaseBlock())));
+                        return InteractionResult.SUCCESS;
+                    }
+                    else
+                    {
+                        return InteractionResult.SUCCESS;
+                    }
                 }
             }
         }
