@@ -4,11 +4,11 @@
     "item": "minecraft:budding_amethyst"
   },
   "mainhandTool": {
-    "item": "mowlib:applicator"
-  },
-  "consumeMainhandItem": false,
-  "offhandTool": {
     "tag": "forge:gems"
+  },
+  "consumeMainhandItem": true,
+  "offhandTool": {
+    "item": "effectscrolls:item_crystal"
   },
   "consumeOffhandItem": true,
   "result": {
