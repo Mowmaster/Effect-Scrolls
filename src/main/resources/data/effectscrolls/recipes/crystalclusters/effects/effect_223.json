@@ -4,5 +4,11 @@
     "item": "effectscrolls:item_crystal"
   },
   "color": 11184895,
-  "mobEffect": ""
+  "mobEffect": "mahoutsukai:fay_sight_eyes",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mahoutsukai"
+    }
+  ]
 }

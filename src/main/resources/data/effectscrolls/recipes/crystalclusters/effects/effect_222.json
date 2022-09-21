@@ -4,7 +4,7 @@
     "item": "effectscrolls:item_crystal"
   },
   "color": 11184810,
-  "mobEffect": "ars_nouveau:shield",
+  "mobEffect": "ars_nouveau:shielding",
   "conditions": [
     {
       "type": "forge:mod_loaded",

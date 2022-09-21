@@ -4,5 +4,11 @@
     "item": "effectscrolls:item_crystal"
   },
   "color": 16755455,
-  "mobEffect": ""
+  "mobEffect": "ars_nouveau:recovery",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ]
 }

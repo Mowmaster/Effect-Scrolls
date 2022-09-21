@@ -3,12 +3,12 @@
   "input": {
     "item": "effectscrolls:item_crystal"
   },
-  "color": 16711935,
-  "mobEffect": "occultism:beaver_harvest",
+  "color": 5592490,
+  "mobEffect": "tombstone:purification",
   "conditions": [
     {
       "type": "forge:mod_loaded",
-      "modid": "farmersdelight"
+      "modid": "tombstone"
     }
   ]
 }

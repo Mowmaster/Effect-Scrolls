@@ -3,12 +3,12 @@
   "input": {
     "item": "effectscrolls:item_crystal"
   },
-  "color": 5614250,
-  "mobEffect": "twilightforest:frosted",
+  "color": 16755455,
+  "mobEffect": "mahoutsukai:fear",
   "conditions": [
     {
       "type": "forge:mod_loaded",
-      "modid": "twilightforest"
+      "modid": "mahoutsukai"
     }
   ]
 }

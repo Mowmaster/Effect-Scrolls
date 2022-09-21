@@ -4,11 +4,11 @@
     "item": "effectscrolls:item_crystal"
   },
   "color": 5614335,
-  "mobEffect": "occultism:double_jump",
+  "mobEffect": "tombstone:frost_resistance",
   "conditions": [
     {
       "type": "forge:mod_loaded",
-      "modid": "occultism"
+      "modid": "tombstone"
     }
   ]
 }

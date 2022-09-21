@@ -4,5 +4,11 @@
     "item": "effectscrolls:item_crystal"
   },
   "color": 5614335,
-  "mobEffect": ""
+  "mobEffect": "ars_nouveau:freezing",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ]
 }

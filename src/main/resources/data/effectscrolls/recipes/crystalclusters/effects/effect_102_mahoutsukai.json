@@ -3,12 +3,12 @@
   "input": {
     "item": "effectscrolls:item_crystal"
   },
-  "color": 16711935,
-  "mobEffect": "occultism:beaver_harvest",
+  "color": 5570730,
+  "mobEffect": "mahoutsukai:reversion_eyes",
   "conditions": [
     {
       "type": "forge:mod_loaded",
-      "modid": "farmersdelight"
+      "modid": "mahoutsukai"
     }
   ]
 }
